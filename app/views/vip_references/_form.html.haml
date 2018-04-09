@@ -1,0 +1,145 @@
+-# = stylesheet_link_tag '//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css', media: 'all'
+%div.panel-group
+  =nested_form_for @vip_reference do |f|
+    %div.panel.panel-info
+      %div.panel-heading="Letter Details"
+      %div.panel-body
+        %div.col-md-12
+          %div.row
+            %div.col-md-12
+              - if @vip_reference.errors.any?
+                #error_explanation
+                  %h5= "#{pluralize(@vip_reference.errors.count, "error")} prohibited this vip reference from being saved:"
+                  /
+                    %ul
+                      - @vip_reference.errors.full_messages.each do |msg|
+                        %li= msg
+
+          %div.row.top-buffer
+            %div.col-md-2
+              = f.label :letter_no
+              %span#asterisk *
+            %div.col-md-4
+              = f.text_field :letter_no, {:class=>'form-control'}
+            %div.col-md-2
+              = f.label :letter_date
+              %span#asterisk *
+            %div.col-md-4= f.text_field :letter_date, {'data-provide'=>'datepicker','class'=>'form-control','data-date-format'=>'dd/mm/yyyy',:value=>"#{f.object.letter_date.strftime('%d/%m/%Y') unless f.object.new_record?}"}
+
+          %div.row.top-buffer
+            %div.col-md-2
+              = f.label :subject
+              %span#asterisk *
+            %div.col-md-4= f.text_field :subject, {:class=>'form-control'}
+            %div.col-md-2
+              = f.label :diaried_date
+              %span#asterisk *
+            %div.col-md-4= f.text_field :diaried_date, {'data-provide'=>'datepicker',:class=>'form-control','data-date-format'=>'dd/mm/yyyy',:value=>"#{f.object.diaried_date.strftime('%d/%m/%Y') unless f.object.new_record? || f.object.diaried_date.nil?}"}
+
+          %div.row.top-buffer
+            %div.col-md-2= f.label :received_on
+            %div.col-md-4= f.text_field :received_on, {'data-provide'=>'datepicker',:class=>'form-control','data-date-format'=>'dd/mm/yyyy',:value=>"#{f.object.received_on.strftime('%d/%m/%Y') unless f.object.new_record? || f.object.received_on.nil? }"}
+            %div.col-md-2= f.label :eoffice_receipt_no
+            %div.col-md-4= f.text_field :eoffice_receipt_no, {:class=>'form-control'}
+        
+          %div.row.top-buffer
+            %div.col-md-2= f.label :eoffice_file_no, {:class=>'control-label'}
+            %div.col-md-4= f.text_field :eoffice_file_no, {:class=>'form-control'}
+            %div.col-md-2
+              = f.label :section_id
+              %span#asterisk *
+            - if current_user.is_admin?
+              %div.col-md-4= f.collection_select(:section_id, Section.all, :id,:name,{}, {:class=>'form-control'})  
+            - else
+              %div.col-md-4= f.collection_select(:section_id, current_user.sections, :id,:name,{}, {:class=>'form-control'})
+
+          %div.row.top-buffer
+            - if @vip_reference.new_record?
+              %div.col-md-2
+                = f.label :vip_ref_status_id
+                %span#asterisk *
+            
+              %div.col-md-4= f.collection_select(:vip_ref_status_id, VipRefStatus.all, :id,:status_name,{:selected=>  VipRefStatus.default.map(&:id)}, {:class=>'form-control',:disabled=>'true'})
+              = f.hidden_field :vip_ref_status_id,:value=>VipRefStatus.default.first.id
+            - else
+              %div.col-md-2
+                = f.label :vip_ref_status_id
+                %span#asterisk *
+              %div.col-md-4= f.collection_select(:vip_ref_status_id, VipRefStatus.all, :id,:status_name,{}, {:class=>'form-control',:readonly=>'true'})
+            %div.col-md-2
+              = f.label :category_id
+              %span#asterisk *
+            - if @vip_reference.new_record?
+              %div.col-md-4= f.collection_select(:category_id, Category.all, :id,:name,{:selected=>  Category.default.map(&:id)}, {:class=>'form-control'})	            
+            - else
+              %div.col-md-4= f.collection_select(:category_id, Category.all, :id,:name,{:selected=>  @vip_reference.vip_category.category.id}, {:class=>'form-control'})    
+
+          %div.row.top-buffer
+            %div.col-md-2
+              = f.label :vip_category_id
+              %span#asterisk *
+            - if @vip_reference.new_record?
+              %div.col-md-4= f.collection_select(:vip_category_id, VipCategory.where('category_id=?',Category.default.map(&:id)), :id,:name,{:selected=>  VipCategory.default.map(&:id)}, {:class=>'form-control'})
+            - else
+              %div.col-md-4= f.collection_select(:vip_category_id, VipCategory.where("category_id = ?",@vip_reference.vip_category.category.id), :id,:name,{}, {:class=>'form-control'})			
+
+    %div.panel.panel-info
+      %div.panel-heading="Sender Details"
+      %div.panel-body
+        = f.fields_for :sender do |s|
+          %div.row.top-buffer
+            %div.col-md-2
+              = s.label :name
+              %span#asterisk *
+            %div.col-md-4= s.text_field :name, {:class=>'form-control'}
+            %div.col-md-2
+              =s.label :designation
+              %span#asterisk *
+            %div.col-md-4=s.text_field :designation, {:class=>'form-control'}
+          %div.row.top-buffer
+            %div.col-md-2= s.label :org
+            %div.col-md-10= s.text_field :org, {:class=>'form-control'}
+          %div.row.top-buffer
+            %div.col-md-2= s.label :address1
+            %div.col-md-10= s.text_field :address1, {:class=>'form-control'}
+          %div.row.top-buffer  
+            %div.col-md-2= s.label :address2
+            %div.col-md-10= s.text_field :address2, {:class=>'form-control'}
+          %div.row.top-buffer  
+            %div.col-md-2
+              = s.label :country
+              %span#asterisk *
+            %div.col-md-4= s.select :country, options_for_select(Country.all.collect { |c| [c.name, c.id] }, @vip_reference.sender.state), {}, { id: 'countries_select',:class=>'form-control',:autocomplete=>"off" }
+
+            %div.col-md-2
+              = s.label :state
+              %span#asterisk *
+            %div.col-md-4= s.select :state, options_for_select(State.all.collect { |state| [state.name, state.id] }, @vip_reference.sender.state), {}, { id: 'states_select',:class=>'form-control',:autocomplete=>"off" } 
+          %div.row.top-buffer  
+            %div.col-md-2= s.label :city
+            %div.col-md-4= s.text_field :city, {:class=>'form-control'}
+            %div.col-md-2= s.label :pincode
+            %div.col-md-4= s.text_field :pincode, {:class=>'form-control'}
+          %div.row.top-buffer  
+            %div.col-md-2= s.label :mobile
+            %div.col-md-4= s.text_field :mobile, {:class=>'form-control'}
+            %div.col-md-2= s.label :landline
+            %div.col-md-4= s.text_field :landline, {:class=>'form-control'}
+          %div.row.top-buffer  
+            %div.col-md-2= s.label :email
+            %div.col-md-10= s.text_field :email, {:class=>'form-control'}
+                    
+            
+    %div.panel.panel-info
+      %div.panel-body
+        %div.row.top-buffer
+          %div.col-md-9
+          %div.col-md-3
+            -if @vip_reference.new_record?
+              = f.submit 'Create', :class=> 'btn btn-primary'
+            -else
+              = f.submit 'Update', :class=> 'btn btn-primary'
+
+
+= javascript_include_tag "vip_references", 'data-turbolinks-track' => true
+= javascript_include_tag "country_state_select", 'data-turbolinks-track' => true

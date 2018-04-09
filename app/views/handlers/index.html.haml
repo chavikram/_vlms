@@ -1,0 +1,36 @@
+%h1.header Listing handlers
+%br
+%div.table-responsive
+  
+  %table.table.table-bordered
+    %tr
+      %th #
+      %th Name
+      %th Room no
+      %th Floor
+      %th Contact no
+      %th Intercom
+      %th
+      %th
+      %th
+    %tr
+      = will_paginate @handlers
+  
+    - @handlers.each_with_index do |handler,index|
+      %tr
+        -if params[:page].nil?
+          %td= index+1
+        -else
+          %td= (params[:page].to_i-1)*5+index+1
+        %td= handler.name
+        %td= handler.room_no
+        %td= handler.floor
+        %td= handler.contact_no
+        %td= handler.intercom
+        %td= link_to 'Show', handler
+        %td= link_to 'Edit', edit_handler_path(handler)
+        %td= link_to 'Destroy', handler, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Handler', new_handler_path

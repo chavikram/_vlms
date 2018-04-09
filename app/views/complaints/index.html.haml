@@ -1,0 +1,64 @@
+%h1.header Listing complaints
+%br
+%div
+  -if !current_user.nil?
+    = link_to "List All", complaints_path, class: "btn btn-default"
+  =form_tag complaints_path, :method => 'get' do 
+    %b= text_field_tag :search, params[:search]
+    %b= submit_tag "Search", :name => nil,class: "btn btn-default btn-primary" 
+  
+%br
+
+%div.col-md-8
+  = form_tag move_complaints_path , :method=>:get
+  %div.table-responsive
+    %table.table.table-bordered.table-hover{:id=>'complaint_list'}
+      %tr
+        = will_paginate @complaints
+      %tr
+        %th #   
+        %th Id
+        %th Complaint
+        %th Remarks
+        %th Location
+        %th Date since
+        %th User
+        %th    
+        %th
+        %th
+    
+      -if !@complaints.nil?
+        - @complaints.each_with_index do |complaint,index|
+          %tr
+            = hidden_field_tag "complaint_#{complaint.id}"
+            -if params[:page].to_i == 0
+              %td= index+1
+            -else
+              %td= (params[:page].to_i-1)*5+index+1
+            %td= complaint.id
+            %td= complaint.complaint_type.problem
+            %td= complaint.remarks
+            %td= complaint.location
+            %td= time_ago_in_words(complaint.date_since)    
+            %td
+              - if !complaint.user.nil?
+                %b="#{complaint.user.contact.office.name}(#{complaint.user.contact.room_no})"
+            
+            %td= link_to 'Show', complaint
+            - if can? :update, @Complaint
+              %td= link_to 'Edit', edit_complaint_path(complaint)
+              %td= link_to 'Destroy', complaint, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            
+              %td
+                %div.dropdown
+                  %button.btn.btn-default.btn-primary.dropdown-toggle{type:'button', data: {toggle: 'dropdown'}}
+                    Move
+                    %span.caret
+                  %ul.dropdown-menu
+                    - Handler.all.select{|h| h.id!=current_user.handler.id}.each do |handler|
+                      %li=link_to "#{handler.name}", complaint_complaint_movements_path(complaint_id:complaint.id,handler_id:handler.id),:method=>:post,:remote=> true,:data => {:type=> 'jsonp'}     
+
+
+      
+  %br
+  

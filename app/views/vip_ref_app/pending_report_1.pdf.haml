@@ -1,0 +1,81 @@
+%div.col-md-12
+  %div.panel-heading{:style=>"color: #23648d; font-size:14px;"}
+    %b
+      %center
+        ="MINISTRY OF CIVIL AVIATION"
+        %br
+        ="VIP REFERENCES MONITORING SYSTEM"
+        %br
+      %u
+        
+        ="Section Wise Summary Report of VIP References "
+
+  %div.panel-body
+    %table.table.table-bordered{}
+      %thead{:style=>"page-break-inside: avoid;"}
+      -if !@sections.nil?
+        %tr
+          %th
+            %b= "S.No."
+          %th
+            %b= "Section"
+          %th
+            %b= "Total References"
+
+          %th
+            %b= "Closed"
+
+          %th{:colspan=>'3'}
+            %center= "Pending"
+
+          %th
+            %b= "Total Pending"
+        %tr
+          %th
+          %th
+          %th
+          %th
+          %th
+            %b= "<= 1 month"
+          %th
+            %b= ">1 mth and <= 3 mths"
+          %th
+            %b= "> 3 months"
+          %th
+        - @sections.try :each_with_index do |section,index|
+          - if section.vip_references.vip.count==0
+            %tr{:style=>'color:black;'}
+              -if params[:page].to_i == 0
+                %td= index+1
+              -else
+                %td= (params[:page].to_i-1)*10+index+1
+              %td= section.name
+              %td= section.vip_references.vip.count
+              %td= "#{section.vip_references.closed.vip.count}"
+
+              %td= link_to "#{section.vip_references.vip.pending_lessthan_1mth.count}", pending_lessthan_1mth_section_path(section)
+              %td= link_to "#{section.vip_references.vip.pending_lessthan_3mth.count}", pending_lessthan_3mth_section_path(section)
+              %td= link_to "#{section.vip_references.vip.pending_morethan_3mth.count}", pending_morethan_3mth_section_path(section)
+              %td= "#{section.vip_references.pending.vip.count}"
+              
+          - else
+            %tr
+              -if params[:page].to_i == 0
+                %td= index+1
+              -else
+                %td= (params[:page].to_i-1)*10+index+1
+              %td= section.name
+              %td= section.vip_references.vip.count
+              %td= "#{section.vip_references.closed.vip.count}"
+              %td= link_to "#{section.vip_references.pending_lessthan_1mth.vip.count}", pending_lessthan_1mth_section_path(section)
+              %td= link_to "#{section.vip_references.pending_lessthan_3mth.vip.count}", pending_lessthan_3mth_section_path(section)
+              %td= link_to "#{section.vip_references.pending_morethan_3mth.count}", pending_morethan_3mth_section_path(section)
+              %td= "#{section.vip_references.pending.vip.count}"
+              
+
+      -if params[:type]!='user'
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td{:colspan=>"7"}
+            %b= "Total"
+          %td
+            %b= "#{VipReference.all.vip.count}"

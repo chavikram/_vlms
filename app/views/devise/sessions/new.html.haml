@@ -1,0 +1,61 @@
+%br
+%br
+%br
+%br
+%script{:type=>"text/javascript"}
+  :plain
+
+    $( document ).ready(function() {
+      $('#new_user').on('submit',function(e){
+        alert('onsubmit');
+        e.preventDefault();
+        this.user_password.value = sha256(sha256('this.user_password.value')+this.user_salt_value.value)
+        
+        this.submit();
+        });
+      
+    });
+    
+-content_for :footer do 
+  %div.row
+    %div.col-md-12
+      %center
+        %label{:style=>"color: #23648d; font-weight: bolder"}="Developed by"
+        =image_tag("logo.png",:style=>"vertical-align: middle; height: 20px; width: 100px;")
+        
+      %div.col-md-3
+%div.col-md-6.col-md-offset-2
+  %div.panel.panel-info
+    %div.panel-heading
+      ="Login"
+    %div.panel-body
+      =form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = content_tag(:div, flash[:alert], :id => "alert_alert",:style=>"color:red;") if flash[:alert] 
+        = content_tag(:div, flash[:error], :id => "error_alert",:style=>"color:red;") if flash[:error] 
+        = content_tag(:div, flash[:notice], :id => "flash_alert",:style=>"color:red;") if flash[:notice] 
+        = f.hidden_field :salt_value, :value=> "#{session['salt']}"
+        %div.row.top-buffer
+          %div.col-md-4=f.label :email
+          %div.col-md-8= f.email_field :email, autofocus: true, :class=>'form-control'
+        %div.row.top-buffer
+          %div.col-md-4= f.label :password
+          %div.col-md-8=f.password_field :password, autocomplete: "off", :class=>'form-control'
+        %div.row.top-buffer
+          - if devise_mapping.rememberable?
+            %div.col-md-4
+              %label
+            %div.col-md-8
+              =f.check_box :remember_me 
+              =f.label :remember_me
+        %div.row.top-buffer
+          %div.col-md-4
+            %label
+          %div.col-md-8
+            = f.submit "Log in",:class=>'btn btn-primary'
+            = f.button "Reset",:type=>'reset',:class=>'btn btn-primary'
+
+      = render "devise/shared/links"
+      /= session.inspect
+      = session['salt']
+      %h5= "Note: Application is available for Operation only during Office Hours (9AM - 5:30PM)"   
+      %h5= "Application is being migrated to NIC Cloud,test version is available on http://10.25.122.63:8080/"

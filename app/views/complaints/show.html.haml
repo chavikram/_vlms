@@ -1,0 +1,56 @@
+%h1.header Complaint Details
+%h3#notice= notice
+
+%h4
+  %b Complaint No:
+  = @complaint.id
+%h4
+  %b Complaint type:
+  = @complaint.complaint_type.problem
+%h4
+  %b Remarks:
+  = @complaint.remarks
+%h4
+  %b Name:
+  = @complaint.name
+
+%h4
+  %b Location:
+  = @complaint.location
+%h4
+  %b Date since:
+  = @complaint.date_since
+
+%h4
+  %b Status:
+  %br
+  - if @complaint.complaint_statuses.empty?
+    %b= 'Not Opened'
+  - @complaint.complaint_statuses.each do |cm|
+    %b= "Updated Status as "
+    %b= cm.status.type
+    %b= "(#{cm.remarks})"
+    %b= "#{time_ago_in_words(cm.created_at)} ago"
+    %br
+     
+%h4
+  %b Movement
+  %br
+
+  %div.col-md-12
+    %table.table
+      %tr
+        %td From
+        %td To
+        %td On
+        
+      - @complaint.complaint_movements.each do |cm|
+        %tr
+          %td= Handler.find(cm.sender_id).name
+          %td= Handler.find(cm.receiver_id).name
+          %td= cm.on
+
+%h4
+  %b
+    -if !current_user.nil? && current_user.is_admin?
+      = link_to 'Edit', edit_complaint_path(@complaint),:class=>"btn btn-default "

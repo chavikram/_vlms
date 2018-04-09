@@ -1,0 +1,12 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show Feedback Reply"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Reply Text"
+        %td=@feedback_reply.reply_text
+      %tr
+        %td= "Submitted On"
+        %td= l @feedback_reply.replied_on

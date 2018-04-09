@@ -1,0 +1,91 @@
+%h4#notice= notice
+%div.col-md-4
+  %div.panel.panel-info
+  %div.panel-heading
+    %b
+      %u
+        ="Section Wise Listing of Vip References Entered till this date:"
+  %div.panel-body
+    %table.table.table-striped
+      
+      -if !@sections.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+            %b= "S.No."
+          %td
+            %b= "Section"
+          %td
+            %b= "Total References"
+        - @sections.try :each_with_index do |section,index|
+          - if section.vip_references.count==0
+            %tr{:style=>'color:black;'}
+              -if params[:page].to_i == 0
+                %td= index+1
+              -else
+                %td= (params[:page].to_i-1)*10+index+1
+              %td= section.name
+              %td{:style=>'color:red;'}= section.vip_references.count
+          - else
+            %tr
+              -if params[:page].to_i == 0
+                %td= index+1
+              -else
+                %td= (params[:page].to_i-1)*10+index+1
+              %td= section.name
+              %td= section.vip_references.count
+%div.col-md-4
+  %div.panel.panel-info
+  %div.panel-heading
+    %b
+      %u
+        ="VIP Category Wise Listing of Vip References Entered till this date:"
+  %div.panel-body
+    %table.table.table-striped
+      
+      -if !@vip_categories.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+            %b= "S.No."
+          %td
+            %b= "VIP Category"
+          %td
+            %b= "Total References"
+        - @vip_categories.try :each_with_index do |vip_category,index|
+          - if vip_category.vip_references.count==0
+            %tr{:style=>'color:black;'}
+              -if params[:page].to_i == 0
+                %td= index+1
+              -else
+                %td= (params[:page].to_i-1)*10+index+1
+              %td= vip_category.name
+              %td{:style=>'color:red;'}= vip_category.vip_references.count
+          - else
+            %tr
+              -if params[:page].to_i == 0
+                %td= index+1
+              -else
+                %td= (params[:page].to_i-1)*10+index+1
+              %td= vip_category.name
+              %td= vip_category.vip_references.count
+              
+%div.col-md-4
+  %div.panel.panel-info
+  %div.panel-heading
+
+  %div.panel-body
+
+    %b
+      %br
+      = "Instructions:"
+      %br
+      %br
+      %font{:color=>'red'}="For any technical issue in the application kindly contact NIC Cell, M/o CA at ext. 2880"
+      %br
+      %br
+      ="Presently, Only officers of S.O. and above are allowed to login, feature to enable login for other users will be activated later."
+      %br
+      %br
+      ="Sections users are requested to access the application through their SO's NICEmail and default password Vip##123."
+      %br
+      %br
+      ="For changing the default password, New Password must contain at least one capital, one numeric and one special character with minimum pwd length of 8 characters."

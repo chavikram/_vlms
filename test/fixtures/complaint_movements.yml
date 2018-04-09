@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  complaint_id: 1
+  sender_id: 1
+  receiver_id: 1
+  'on': 2014-09-28 11:42:37
+
+two:
+  complaint_id: 1
+  sender_id: 1
+  receiver_id: 1
+  'on': 2014-09-28 11:42:37

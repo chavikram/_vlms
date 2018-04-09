@@ -1,0 +1,210 @@
+/%div.btn­-group
+/  %button.btn.btn­-default.dropdown­-toggle{"type":"button","data­-toggle":"dropdown"}
+/  %b= "Dropdown"
+/  %span.caret
+
+- if !current_user.nil? && (current_user.contact.active?||(current_user.contact.office.incharge == current_user.contact))
+  %ul.nav.nav
+    - if !current_user.nil? && current_user.is_admin?
+      %li
+        = link_to vip_ref_app_homescreen_path do 
+          
+          %i{:class=>'glyphicon glyphicon-dashboard'}
+          Dashboard
+          %sup
+            [New]
+      %li
+        = link_to new_vip_reference_path do
+          %i{:class=>"glyphicon glyphicon-plus-sign"}
+          Add New
+      %li
+        = link_to vip_ref_app_draft_path do
+          %i{:class=>"fa fa-life-ring fa-lg"}
+          Draft
+      %li
+        = link_to vip_ref_app_inbox_section_path do
+          %i{:class=>"fa fa-inbox fa-lg"}
+          Pending
+      %li
+        = link_to vip_ref_app_sent_path do
+          %i{:class=>"fa fa-share-square fa-lg"}
+          Transferred
+      %li
+        = link_to vip_ref_app_closed_path do
+          %i{:class=>"glyphicon glyphicon-remove-sign"}
+          Closed
+		
+      /
+        %li
+          = link_to vip_ref_app_inbox_path do
+            %i{:class=>"fa fa-inbox fa-lg"}
+            Inbox
+      %li
+        = link_to vip_references_path do 
+          %i{:class=>"glyphicon glyphicon-search"}
+          Search  
+      %li
+        = link_to vip_ref_app_chart_path do 
+          %i{:class=>"fa fa-bar-chart"}
+          Charts  
+          %sup
+            [New]
+          
+      %li
+        = link_to vip_ref_app_report_path do 
+          %i{:class=>"glyphicon glyphicon-stats"}
+          Reports
+          %sup
+            [New]
+
+      /
+        %li= link_to "PDF ", vip_references_path(:format => 'pdf')
+        %li= link_to "Report", vip_references_report_path
+      %li
+        = link_to "#" do
+          %i{:class=>'glyphicon glyphicon-cog'}
+          Settings
+      %li
+        %ul{:style=>"list-style-type:none;"}
+          %li
+            = link_to offices_path do
+              %i{:class=>'fa fa-hand-o-right '}
+              Manage Offices
+          %li
+            = link_to categories_path do 
+              %i{:class=>'fa fa-hand-o-right '}
+              Manage Categories
+
+          %li
+            = link_to vip_categories_path do 
+              %i{:class=>'fa fa-hand-o-right '}
+              Manage Sub Categories
+          %li
+            = link_to vip_ref_statuses_path do
+              %i{:class=>'fa fa-hand-o-right '}
+              Manage Reference Statuses
+          
+          /%li
+          /    = link_to contacts_path do
+          /      %i{:class=>'fa fa-long-arrow-right'}
+          /      Manage Contacts  
+          %li
+            = link_to office_contacts_path(current_user.contact.office)  do
+              %i{:class=>'fa fa-hand-o-right '}
+              Manage Contacts  
+
+          %li
+            = link_to sections_path do
+              %i{:class=>'fa fa-hand-o-right '}
+              Manage Sections  
+          %li
+            = link_to designations_path do
+              %i{:class=>'fa fa-hand-o-right '}
+              Manage Designations 
+
+          %li
+            = link_to countries_path do
+              %i{:class=>'fa  fa-hand-o-right '}
+              Manage Countries & States 
+      %li
+        = link_to new_office_contact_feedback_path(current_user.contact.office,current_user.contact) do
+          %i{:class=>'fa fa-commenting '}
+          Feedback/Suggestions/Complaints
+          -if current_user.is_admin?
+            ="(#{Feedback.all.size})"  
+
+    - else
+      %li
+        = link_to vip_ref_app_homescreen_path do 
+          
+          %i{:class=>'glyphicon glyphicon-dashboard'}
+          Dashboard
+          %sup
+            [New]
+
+      %li
+        = link_to new_vip_reference_path do
+          %i{:class=>"glyphicon glyphicon-plus-sign"}
+          Add New
+      %li
+        = link_to vip_ref_app_draft_path do
+          %i{:class=>"fa fa-life-ring fa-lg"}
+          Draft
+      %li
+        = link_to vip_ref_app_inbox_section_path do
+          %i{:class=>"fa fa-inbox fa-lg"}
+          Pending
+      %li
+        = link_to vip_ref_app_sent_path do
+          %i{:class=>"fa fa-share-square fa-lg"}
+          Transferred
+      %li
+        = link_to vip_ref_app_closed_path do
+          %i{:class=>"glyphicon glyphicon-remove-sign"}
+          Closed
+
+      /
+        %li
+          = link_to vip_ref_app_inbox_path do
+            %i{:class=>"fa fa-inbox fa-lg"}
+            Inbox
+          
+        %li
+          = link_to vip_ref_app_sent_path do
+            %i{:class=>"fa fa-share-square fa-lg"}
+            Sent
+        %li
+          = link_to vip_ref_app_draft_path do
+            %i{:class=>"fa fa-life-ring fa-lg"}
+            Draft
+      %li
+        = link_to vip_references_path do 
+          %i{:class=>"glyphicon glyphicon-search"}
+          Search  
+      %li
+        = link_to vip_ref_app_chart_path do 
+          %i{:class=>"fa fa-bar-chart "}
+          Charts  
+          %sup
+            [New]
+
+      %li
+        = link_to vip_ref_app_report_path do 
+          %i{:class=>"glyphicon glyphicon-stats"}
+          Reports
+          %sup
+            [New]
+
+      %li
+        = link_to "#" do
+          %i{:class=>'glyphicon glyphicon-cog'}
+          Settings
+      %li
+        %ul{:style=>"list-style-type:none;"}
+          %li
+            = link_to countries_path do
+              %i{:class=>'fa  fa-hand-o-right'}
+              Manage Countries & States 
+          -if current_user.contact.office.incharge == current_user.contact
+            %li
+              = link_to office_contacts_path(current_user.contact.office)  do
+                %i{:class=>'fa  fa-hand-o-right '}
+                Manage Contacts  
+         
+      %li
+        = link_to new_office_contact_feedback_path(current_user.contact.office,current_user.contact) do
+          %i{:class=>'fa fa-commenting'}
+          Feedbacks/Suggestions/Complaints
+                
+      /
+        %li= link_to "PDF ", vip_references_path(:format => 'pdf')
+        %li= link_to "Report", vip_references_report_path
+  
+      /    %li=link_to "Complaint List", complaints_path
+      /    %li=link_to "Manage Complaint Types", complaint_types_path
+      /    %li= link_to "Manage Handlers", handlers_path
+      /    %li= link_to "Manage Status", statuses_path
+- else
+  - if !current_user.contact.nil?
+    %h5= "Your Account is not activated. please contact #{current_user.contact.office.incharge.try(:name)},#{current_user.contact.office.incharge.try(:designation).try(:name)}"
+    

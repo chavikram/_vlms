@@ -1,0 +1,35 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show Section"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Name"
+        %td=@section.name
+      %tr
+        %td= "Short Name"
+        %td= @section.short_name
+      %tr
+        %td= "Section Officer"
+        %td= @section.sectionofficer.contact.name
+      %tr
+        %td= "Under Secretary"
+        %td= @section.undersecretary.contact.name
+      %tr
+        %td= "Director"
+        %td= @section.director.contact.name
+      %tr
+        %td= "Joint Secretary"
+        %td= @section.js.contact.name 
+      %tr
+        %td= "Created At"
+        %td=@section.created_at.to_formatted_s(:long)
+      %tr
+        %td= "Updated At"
+        %td=@section.updated_at.to_formatted_s(:long)
+        
+= link_to 'Edit', edit_section_path(@section)
+\|
+= link_to 'Back', :back
+

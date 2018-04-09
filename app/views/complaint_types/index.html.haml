@@ -1,0 +1,34 @@
+%h1.header Listing Complaint Types
+%br
+%div.table-responsive.table-bordered.table-hover
+  %table.table.table-bordered.table-hover
+    %tr
+      = will_paginate @complaint_types
+    %tr
+      %th #
+      %th Problem
+      %th Solution
+      %th Handler
+      %th Level
+      %th
+      %th
+      %th
+    
+    - @complaint_types.each_with_index do |complaint_type,index|
+      %tr
+        -if params[:page].to_i == 0
+          %td= index+1
+        -else
+          %td= (params[:page].to_i-1)*5+index+1
+        %td= complaint_type.problem
+        %td= complaint_type.solution
+        %td= complaint_type.handler.name
+        %td= complaint_type.level
+        %td= link_to 'Show', complaint_type
+        %td= link_to 'Edit', edit_complaint_type_path(complaint_type)
+        %td= link_to 'Destroy', complaint_type, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    
+    
+%br
+%br
+%u= link_to 'New Complaint type', new_complaint_type_path

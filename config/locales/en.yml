@@ -1,0 +1,89 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  time:
+    formats:
+      default: "%d/%m/%Y %I:%M %p"
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%b %d"
+      long: "%d/%m/%Y"
+      pdf: "%B %e, %Y"
+  helpers:
+    label:
+      vip_reference:
+        letter_no: 'Letter No'
+        letter_date: 'Letter Date'
+        subject: 'Subject'
+        diaried_date: 'Diary Date'
+        received_on: 'Received Date'
+        sender_name: 'Name'
+        eoffice_receipt_no: 'eOffice Receipt No'
+        eoffice_file_no: 'eOffice File No'
+        section_id: 'Section'
+        vip_ref_status_id: "Status"
+        status_id: 'Status'
+        category_id: 'Category'
+        vip_category_id: 'Sub Categery'
+        summary: 'Summary'
+      sender:
+        name: 'Name'
+        designation: 'Designation'
+        org: 'Organization' 
+        address1: 'Address 1'
+        address2: 'Address 2'
+        country: 'Country'
+        state: 'State'
+        city: 'City'
+        pincode: 'Pin Code'
+        landline: 'Land Line'
+        mobile: 'Mobile'
+        email: 'EMail'
+      vip_category:
+        name: 'Name'
+        s_name: 'Short Name'
+        default: 'Is Default Category?'
+      vip_ref_status:
+        status_name: 'Status Name'
+        status_desc: 'Status Description'
+        default: 'Is Default?'
+        deleted: 'Is Deleted?'
+      office:
+        name: 'Office Name'
+        room_no: 'Room No'
+        floor: 'Floor No'
+        incharge_name: 'Incharge Name'        
+      section:
+        name: 'Section Name'
+        short_name: 'Short Name'
+        sectionofficer: 'Section Officer'
+        undersecretary: 'Under Secretary'
+        director: 'Director'
+        js: 'Joint Secretary'
+      feedback:
+        feedback_text: 'Enter Your Feedback/Complaint/Suggestions'
+      user:
+        password: 'New Password'
+        password_confirmation: 'Re-Enter New Password'
+        current_password: 'Current Password'

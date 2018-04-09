@@ -1,0 +1,43 @@
+%div.col-md-4
+  %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-family:verdana;"}
+    %b
+    %b
+      %center
+        ="MINISTRY OF CIVIL AVIATION"
+        %br
+        ="VIP REFERENCES MONITORING SYSTEM"
+        %br
+      %u
+        ="Pending VIP References Report:(month-wise)"
+  %div.panel-body
+    %table.table.table-bordered
+      %thead{:style=>"page-break-inside: avoid;"}
+      -if !@sections.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+            %b= "S.No."
+          %td
+            %b= "Section"
+          %td
+            %b= "Pending Vip References"
+            %br
+            %b= "(Month of Diary)"
+          %td
+            %b= "Total"
+        - index =0
+
+        - @sections.each do |section,arr|
+          - sum =0
+          %tr
+            %td=(index=index+1)
+            %td= "#{section}"
+            %td
+              - arr.each do|key,value|
+                ="#{key} - #{value}"
+                - sum = sum + value.to_i
+                %br
+            %td= sum             
+              
+              
+                          
+            

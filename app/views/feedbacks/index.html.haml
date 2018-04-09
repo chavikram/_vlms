@@ -1,0 +1,36 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="Listing Feebacks"
+  %div.panel-body
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th{:colspan=>'3'} Feedback Text
+          %th Submitted By
+          %th Submitted On
+          %th Reply
+          %th Quick Action
+      %tbody      
+        %tr
+          = will_paginate @feedbacks, renderer: BootstrapPagination::Rails
+      - @feedbacks.each_with_index do |feedback,index|
+        %tr
+          %td= index+1
+          %td{:colspan=>'3'}= feedback.feedback_text
+          %td= "#{feedback.contact.name}-#{feedback.contact.designation.name}"
+          %td= l feedback.submitted_on
+          
+          %td
+            - if feedback.feedback_replies.size>0
+              =feedback.feedback_replies.last.reply_text
+              %br
+                %b
+                  ="Replied On #{l feedback.feedback_replies[0].replied_on}"
+          %td
+            = icon_link_to [@office,@contact,feedback],{:icon => "glyphicon glyphicon-open-file"},{:title=>'Show'}
+            = icon_link_to  edit_office_contact_feedback_path(@office,@contact,feedback),{:icon => "glyphicon glyphicon-edit"},{:title=>'Edit'}
+            = icon_link_to [@office,@contact,feedback],{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+
+%br
+= link_to 'New Feedback', new_office_contact_feedback_path(@office,@contact) 

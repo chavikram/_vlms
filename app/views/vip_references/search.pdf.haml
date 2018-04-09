@@ -1,0 +1,41 @@
+%div.col-md-12{:style=>"font-size:18px;"}
+  %center
+    -if !@vip_references_for_pdf.nil?  
+      %u= @vip_references_for_pdf.first.vip_category.category.name+ " References Status Report as on #{l DateTime.now.to_date, format: :pdf}"
+    
+%br
+%table.table.table-bordered{:style=>"page-break-inside: avoid;"}
+  %thead{:style=>"page-break-inside: avoid;"}
+  -if !@vip_references_for_pdf.nil?
+    %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+      %td
+        %b= "S.No."
+      %td
+        %b= "Ref.No."
+      %td
+        %b= "Subject"
+      %td
+        %b= "Letter No/Date"
+      %td
+        %b= "Sender Details"
+      %td
+        %b= "Dealing Section"
+      %td
+        %b= "Receipt Diary Date"
+      %td
+        %b= "Status"
+      %td{:colspan=>"2"}
+        %b= "Status Description/Remarks"
+    %tbody
+    - @vip_references_for_pdf.each_with_index do |reference,index|
+      - if reference.vip_ref_status.status_name.casecmp("draft")==0
+        %tr{:style=>"page-break-inside: avoid;color:green;"}
+          = render "search.pdf.haml",:reference => reference, :index=> index
+      - elsif reference.vip_ref_status.status_name.casecmp("pending")==0
+        %tr{:style=>"page-break-inside: avoid;color:black;"}  
+          = render "search.pdf.haml",:reference => reference, :index=> index
+          
+      -else
+        %tr{:style=>"page-break-inside: avoid;color:red;"}  
+          = render "search.pdf.haml",:reference => reference, :index=> index
+     

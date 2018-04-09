@@ -1,0 +1,33 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="Listing Countries"
+  %div.panel-body
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th Country Name
+          %th Country Code
+          %th Created At
+          %th Updated At
+          %th Quick Action
+      %tbody      
+        %tr
+          = will_paginate @countries, renderer: BootstrapPagination::Rails
+
+      - @countries.each_with_index do |country,index|
+        %tr
+          -if params[:page].to_i == 0
+            %td= index+1
+          -else
+            %td= (params[:page].to_i-1)*5+index+1
+          %td= link_to "#{country.name}", country
+          %td= country.code
+          %td= l country.created_at
+          %td= l country.updated_at
+          %td
+            = icon_link_to  edit_country_path(country),{:icon => "glyphicon glyphicon-edit"},{:title=>'Edit'}
+            |
+            = icon_link_to country,{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+%br
+= link_to 'Add New Country', new_country_path

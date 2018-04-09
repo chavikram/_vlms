@@ -1,0 +1,48 @@
+%div.col-md-12
+  %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-size:16px;"}
+    %u
+      =" Section-wise disposal summary"
+
+  %div.panel-body
+    %div.row
+      %div.col-md-12.col-md-offset-4
+        = form_tag '/vip_references' , :method=>'get',:id=>'disposalreport_form' do |f|
+          %div.row
+            %div.col-md-8
+              %label.col-md-2="Category:"
+              %div.col-md-3= select_tag "category_id",options_from_collection_for_select(Category.all, "id", "name","#{params[:category_id]}"),:onChange => "$(this).closest('form').attr('action', '#{ vip_ref_app_disposalreport_path(format: :html) }');$(this).closest('form').submit();",  :class=>'form-control'
+
+              %div.col-md-3= button_to "Download PDF","#", :onclick => "$(this).closest('form').attr('action', '#{ vip_ref_app_disposalreport_path(format: :pdf) }');$(this).closest('form').submit();",  :class=>'form-control'
+                      
+             
+
+
+        %div.row.top-buffer
+
+    %table.table.table-striped
+      -if !@sectionsbydisposal.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+            %b="S.No."
+          %td
+            %b= "Section"
+          %td
+            %b= "Total"
+          %td
+            %b= "Closed"
+          %td
+            %b= "Pending"
+          %td
+            %b= "Disposal Rate"
+            
+            
+        - @sectionsbydisposal.try :each_with_index do |section,index|
+          %tr  
+            %td= index+1       
+            %td= section.name
+            %td= "#{section.vip_references.vip.count}"
+            %td= "#{section.vip_references.vip.closed.count}"          
+            %td= "#{section.vip_references.vip.pending.count}"
+            %td= "#{(section.vip_references.vip.closed.count*100/section.vip_references.vip.count.to_f).round()}%"
+
+

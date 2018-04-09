@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  problem: MyString
+  solution: MyString
+  handler_id: 1
+  level: MyString
+
+two:
+  problem: MyString
+  solution: MyString
+  handler_id: 1
+  level: MyString

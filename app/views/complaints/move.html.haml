@@ -1,0 +1,29 @@
+%table.table
+  %tr
+    %th Id
+    %th Complaint
+    %th Remarks
+    %th Location
+    %th Date since
+    %th Status
+    %th User
+    %th    
+    %th
+    %th
+
+  -if !@complaints.nil?
+    - @complaints.each do |complaint|
+      %tr
+        %td= check_box_tag "complaint_ids", complaint.id,false, :id=>dom_id(complaint)
+        %td= complaint.id
+        %td= complaint.complaint_type.problem
+        %td= complaint.remarks
+        %td= complaint.location
+        %td= time_ago_in_words(complaint.date_since)    
+        %td= complaint.status.type
+        %td
+          - if !complaint.user.nil?
+            %b="#{complaint.user.contact.office.name}(#{complaint.user.contact.room_no})"
+        
+        %td= link_to 'Show', complaint
+       

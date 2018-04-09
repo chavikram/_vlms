@@ -1,0 +1,67 @@
+= simple_nested_form_for @complaint, :html => {:class => "form-horizontal"} do |f|
+  %div.form-group
+    %center
+      - if @complaint.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@complaint.errors.count, "error")} prohibited this complaint from being saved:"
+          %ul
+            - @complaint.errors.full_messages.each do |msg|
+              %li= msg
+  %div.form-group
+    = f.label :complaint_type_id, "Complaint:", class: "col-md-2 control-label"
+    %div.col-md-6
+      = f.collection_select :complaint_type_id, ComplaintType.all.order(handler_id: :asc), :id, :problem,{}, { :class=> "form-control"}
+  %div.form-group
+    = f.label :remarks, "Remarks:", class: "col-md-2 control-label"
+    %div.col-md-6
+      = f.text_area :remarks, class: "form-control"
+  %div.form-group
+    = f.label :location, "Location:", class: "col-md-2 control-label"
+    %div.col-md-6
+      = f.text_field :location,class: "form-control"
+  %div.form-group
+    = f.label :name, "Name:", class: "col-md-2 control-label"
+    %div.col-md-6
+      = f.text_field :name,class: "form-control"
+
+  %div.form-group
+    = f.label :room_no, "Room No.:", class: "col-md-2 control-label"
+    %div.col-md-6
+      = f.text_field :room_no,class: "form-control"
+    
+  %div.form-group
+    = f.label :contact_no, "Phone No.:", class: "col-md-2 control-label"
+    %div.col-md-6
+      = f.text_field :contact_no,class: "form-control"
+
+  %div.form-group
+    = f.label :intercom ,"Intercom:", class: "col-md-2 control-label"
+    %div.col-md-6
+      = f.text_field :intercom,class: "form-control"
+
+  %div.form-group
+    = f.label :date_since, "Date since problem persist:", class: "col-md-2 control-label"
+    %div.col-md-6
+      = f.date_select :date_since,class: "form-control"
+
+  - if can? :update, @Complaint
+    %div.form-group
+      = f.label :status, "Status:", class: "col-md-2 control-label"
+      %div.col-md-6
+        - flag=true
+        %fieldset{:disabled=>''}
+          = f.simple_fields_for :complaint_statuses do |csform|
+            = csform.collection_select(:status_id,Status.all,:id,:type,{}, { :class=> "input-sm"})
+            = csform.text_field :remarks,:disabled=>flag,:class=> "input-sm"
+            -if !flag
+              = csform.link_to_remove "remove status"
+        
+        -flag = false
+        =f.link_to_add "Add Status",:complaint_statuses 
+         
+      
+  %div.form-group.center
+    %div.col-md-2.col-md-offset-2.btn-group
+      = f.submit 'Submit', class: "btn btn-default btn-primary"
+      = f.submit 'Reset', :type=> :reset, class: "btn btn-default btn-primary"
+        

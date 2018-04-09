@@ -1,0 +1,13 @@
+= form_for [@office,@contact,@feedback,@feedback_reply] do |f|
+  - if @feedback_reply.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@feedback_replies.errors.count, "error")} prohibited this country from being saved:"
+      %ul
+        - @feedback_reply.errors.full_messages.each do |msg|
+          %li= msg
+  %div.row.top-buffer
+    %div.col-md-4=f.label :reply_text
+    %div.col-md-8=f.text_area :reply_text, :class=>'form-control',:rows=>'8',:cols=>'12'
+  %div.row.top-buffer
+    %div.col-md-12
+      = f.submit :class=>'btn btn-default', :value=>'Submit'

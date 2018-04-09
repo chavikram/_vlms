@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  summary_text: MyText
+  vip_reference_id: 
+
+two:
+  summary_text: MyText
+  vip_reference_id: 

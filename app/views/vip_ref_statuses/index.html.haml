@@ -1,0 +1,41 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="List VIP Reference Statuses"
+  %div.panel-body
+    %table.table
+      %thead
+        %tr
+          %th= "#"
+          %th= "Status Name"
+          %th= "Status Description"
+          %th= "Is Default?"
+          %th= "Is Deleted?"
+          %th= "Created At"
+          %th= "Updated At"
+          %th= "Quick Action"
+      %tbody
+        - @vip_ref_statuses.each_with_index do |vip_ref_status,index|
+          %tr
+            %td= index+1
+            %td= vip_ref_status.status_name
+            %td= vip_ref_status.status_desc
+            %td= check_box_tag :default ,vip_ref_status.default,vip_ref_status.default, {:class=>'form-control',:disabled=>true}
+            %td= check_box_tag :deleted ,vip_ref_status.deleted,vip_ref_status.deleted, {:class=>'form-control',:disabled=>true}
+            
+            %td= vip_ref_status.created_at.to_formatted_s(:long)
+            %td= vip_ref_status.updated_at.to_formatted_s(:long)
+            /
+              %td= link_to 'Show', vip_ref_status
+              %td= link_to 'Edit', edit_vip_ref_status_path(vip_ref_status)
+              %td= link_to 'Destroy', vip_ref_status, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td
+              = icon_link_to vip_ref_status,{:icon => "glyphicon glyphicon-open-file"},{title:'Show'}
+              |
+              = icon_link_to  edit_vip_ref_status_path(vip_ref_status),{:icon => "glyphicon glyphicon-edit"},{title:'Edit'}
+              |
+              = icon_link_to vip_ref_status,{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+
+
+%br
+
+= link_to 'New VIP Reference Status', new_vip_ref_status_path

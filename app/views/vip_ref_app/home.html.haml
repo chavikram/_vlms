@@ -1,0 +1,376 @@
+%h4#notice= notice
+%div.col-md-12
+  %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-family:verdana;"}
+    %b
+      %b
+        ="Section Wise Listing of VIP References Entered till this date:(For your sections)"
+      %u
+        =link_to vip_ref_app_pending_report_path(:format=>'pdf',:type=>'user') do
+          ="Download PDF"
+          %i{:class=>"glyphicon glyphicon-download-alt"}
+  -if current_user.is_admin?
+    - sectionslist = Section.all
+  - else
+    - sectionslist = current_user.sections   
+       
+  %div.panel-body
+    %table.table.table-bordered.table-striped
+      -if !sectionslist.nil?
+        %tr
+          %th
+            %b= "S.No."
+          %th
+            %b= "Section"
+          %th
+            %b= "Draft"
+          %th{:colspan=>'3'}
+            %center= "Pending"
+          %th
+            %b= "Total Pending"
+          %th
+            %b= "Closed"
+          %th
+            %b= "Total References"
+          %th
+            %b= "Total Updated Today"
+        %tr
+          %th
+          %th
+          %th
+          %th
+            %b= "<= 1 month"
+          %th
+            %b= ">1 mth and <= 3 mths"
+          %th
+            %b= "> 3 months"
+          %th
+          %th
+          %th
+          %th
+
+        - sectionslist.try :each_with_index do |section,index1|
+          - if section.vip_references.vip.count==0
+            %tr{:style=>'color:black;'}
+              %td= index1+1
+              %td= section.name
+              -begin
+                %td= "#{section.vip_references.vip.draft.count}(#{(section.vip_references.vip.draft.count*100/section.vip_references.vip.count.to_f).round()}%)"
+              -rescue
+                %td= "#{section.vip_references.vip.draft.count}"
+              %td= link_to "#{section.vip_references.vip.pending_lessthan_1mth.count}", pending_lessthan_1mth_section_path(section)
+              %td= link_to "#{section.vip_references.vip.pending_lessthan_3mth.count}", pending_lessthan_3mth_section_path(section)
+              %td= link_to "#{section.vip_references.vip.pending_morethan_3mth.count}", pending_morethan_3mth_section_path(section)
+              -begin
+                %td= "#{section.vip_references.vip.pending.count}(#{(section.vip_references.vip.pending.count*100/section.vip_references.vip.count.to_f).round()}%)"
+              -rescue
+                %td="#{section.vip_references.vip.pending.count}"
+              
+              -begin
+                %td= "#{section.vip_references.vip.closed.count}(#{(section.vip_references.vip.closed.count*100/section.vip_references.vip.count.to_f).round()}%)"
+              -rescue
+                %td= "#{section.vip_references.vip.closed.count}"
+
+              %td{:style=>'color:red;'}= section.vip_references.vip.count 
+              %td= link_to "#{section.vip_references.vip.updated_today.count}", updated_today_section_path(section)
+             
+          - else
+            %tr
+              %td= index1+1
+              %td= section.name
+              -begin
+                %td= "#{section.vip_references.vip.draft.count}(#{(section.vip_references.vip.draft.count*100/section.vip_references.vip.count.to_f).round()}%)"
+              -rescue
+                %td= "#{section.vip_references.vip.draft.count}"
+              %td= link_to "#{section.vip_references.vip.pending_lessthan_1mth.count}", pending_lessthan_1mth_section_path(section)
+              %td= link_to "#{section.vip_references.vip.pending_lessthan_3mth.count}", pending_lessthan_3mth_section_path(section)
+              %td= link_to "#{section.vip_references.vip.pending_morethan_3mth.count}", pending_morethan_3mth_section_path(section)
+              -begin
+                %td= "#{section.vip_references.vip.pending.count}(#{(section.vip_references.vip.pending.count*100/section.vip_references.vip.count.to_f).round()}%)"
+              -rescue
+                %td= "#{section.vip_references.vip.pending.count}"
+              
+              -begin
+                %td= "#{section.vip_references.vip.closed.count}(#{(section.vip_references.vip.closed.count*100/section.vip_references.vip.count.to_f).round()}%)"
+              -rescue
+                %td= "#{section.vip_references.vip.closed.count}"
+              
+              %td= section.vip_references.vip.count 
+              %td= link_to "#{section.vip_references.updated_today.vip.count}", updated_today_section_path(section)
+/
+  %div.col-md-12
+    %div.panel.panel-info
+    %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-family:verdana;"}
+      %b
+        %b
+          ="Section Wise Listing of VIP References Entered till this date:(For all sections)"
+        %u
+          =link_to vip_ref_app_pending_report_path(:format=>'pdf') do
+            ="Download PDF"
+            %i{:class=>"glyphicon glyphicon-download-alt"}
+              
+    %div.panel-body
+      %table.table.table-bordered.table-striped
+        -if !@sections.nil?
+          %tr
+            %th
+              %b= "S.No."
+            %th
+              %b= "Section"
+            %th
+              %b= "Draft"
+            %th{:colspan=>'3'}
+              %center= "Pending"
+            %th
+              %b= "Total Pending"
+            %th
+              %b= "Closed"
+            %th
+              %b= "Total References"
+            %th
+              %b= "Total Updated Today"
+          %tr
+            %th
+            %th
+            %th
+            %th
+              %b= "<= 1 month"
+            %th
+              %b= ">1 mth and <= 3 mths"
+            %th
+              %b= "> 3 months"
+            %th
+            %th
+            %th
+            %th
+          - @sections.try :each_with_index do |section,index|
+            - if section.vip_references.vip.count==0
+              %tr{:style=>'color:black;'}
+                -if params[:page].to_i == 0
+                  %td= index+1
+                -else
+                  %td= (params[:page].to_i-1)*10+index+1
+                %td= section.name
+                -begin
+                  %td= "#{section.vip_references.vip.draft.count}(#{(section.vip_references.vip.draft.count*100/section.vip_references.vip.count.to_f).round()}%)"
+                -rescue
+                  %td= "#{section.vip_references.vip.draft.count}"
+  
+                %td= link_to "#{section.vip_references.vip.pending_lessthan_1mth.count}", pending_lessthan_1mth_section_path(section)
+                %td= link_to "#{section.vip_references.vip.pending_lessthan_3mth.count}", pending_lessthan_3mth_section_path(section)
+                %td= link_to "#{section.vip_references.vip.pending_morethan_3mth.count}", pending_morethan_3mth_section_path(section)
+                -begin
+                  %td= "#{section.vip_references.pending.vip.count}(#{(section.vip_references.pending.vip.count*100/section.vip_references.vip.count.to_f).round()}%)"
+                -rescue
+                  %td="#{section.vip_references.pending.vip.count}"
+                
+                -begin
+                  %td= "#{section.vip_references.closed.vip.count}(#{(section.vip_references.closed.vip.count*100/section.vip_references.vip.count.to_f).round()}%)"
+                -rescue
+                  %td= "#{section.vip_references.closed.vip.count}"
+  
+                %td{:style=>'color:red;'}= section.vip_references.vip.count
+                %td= link_to "#{section.vip_references.updated_today.vip.count}", updated_today_section_path(section)
+            
+            - else
+              %tr
+                -if params[:page].to_i == 0
+                  %td= index+1
+                -else
+                  %td= (params[:page].to_i-1)*10+index+1
+                %td= section.name
+                -begin
+                  %td= "#{section.vip_references.vip.draft.count}(#{(section.vip_references.vip.draft.count*100/section.vip_references.vip.count.to_f).round()}%)"
+                -rescue
+                  %td= "#{section.vip_references.vip.draft.count}"
+  
+                %td= link_to "#{section.vip_references.pending_lessthan_1mth.vip.count}", pending_lessthan_1mth_section_path(section)
+                %td= link_to "#{section.vip_references.pending_lessthan_3mth.vip.count}", pending_lessthan_3mth_section_path(section)
+                %td= link_to "#{section.vip_references.pending_morethan_3mth.count}", pending_morethan_3mth_section_path(section)
+                -begin
+                  %td= "#{section.vip_references.pending.vip.count}(#{(section.vip_references.pending.vip.count*100/section.vip_references.vip.count.to_f).round()}%)"
+                -rescue
+                  %td= "#{section.vip_references.pending.vip.count}"
+                
+                -begin
+                  %td= "#{section.vip_references.closed.vip.count}(#{(section.vip_references.closed.vip.count*100/section.vip_references.vip.count.to_f).round()}%)"
+                -rescue
+                  %td= "#{section.vip_references.closed.vip.count}"
+                %td= section.vip_references.vip.count
+                %td= link_to "#{section.vip_references.updated_today.vip.count}", updated_today_section_path(section)
+          %tr
+            %td{:colspan=>"10"}
+              -if !@sections.nil?
+                = will_paginate @sections,renderer: BootstrapPagination::Rails
+  
+          %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+            %td{:colspan=>"9"}
+              %b= "Total"
+            %td
+              %b= "#{VipReference.all.vip.count}"
+          
+  %div.col-md-4
+    %div.panel.panel-info
+    %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-family:verdana;"}
+      %b
+        
+        =" Category Wise Listing of  References:"
+        %u
+          =link_to vip_ref_app_category_wise_pendency_path(:format=>'pdf') do
+            ="Download PDF"
+            %i{:class=>"glyphicon glyphicon-download-alt"}
+              
+  
+    %div.panel-body
+      %table.table.table-striped
+        -if !@vip_categories.nil?
+          %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+            %td
+              %b= " Category"
+            %td
+              %b= "Total References"
+            %td
+              %b= "Pending References"
+          %tr
+            %td{:colspan=>'3'}
+              %b
+                %u="VIP Categories"
+              
+          - @vip_categories.try :each_with_index do |vip_category,index|
+            - if vip_category.isVip?
+              - if vip_category.vip_references.count==0
+                %tr{:style=>'color:black;'}
+                  %td
+                    ="#{vip_category.name}" 
+                  %td= vip_category.vip_references.count
+                  %td{:style=>'color:red;'}= link_to "#{vip_category.vip_references.pending.count}", referencelist_vip_category_path(vip_category)
+              - else
+                %tr
+                  %td
+                    -if vip_category.isVip?
+                      ="#{vip_category.name}" 
+                    -else
+                      ="#{vip_category.name}(Non-VIP)"
+                  
+                  %td= vip_category.vip_references.count
+                  %td= link_to "#{vip_category.vip_references.pending.count}", referencelist_vip_category_path(vip_category)
+          %tr
+            %td{:colspan=>'3'}
+              %b
+                %u="Non-VIP Categories"
+              
+          - @vip_categories.try :each_with_index do |vip_category,index|
+            - if !vip_category.isVip?
+              - if vip_category.vip_references.count==0
+                %tr{:style=>'color:black;'}
+                  %td
+                    ="#{vip_category.name}" 
+                  %td= vip_category.vip_references.count
+                  %td{:style=>'color:red;'}= link_to "#{vip_category.vip_references.pending.count}", referencelist_vip_category_path(vip_category)
+              - else
+                %tr
+                  %td
+                    -if vip_category.isVip?
+                      ="#{vip_category.name}" 
+                    -else
+                      ="#{vip_category.name}(Non-VIP)"
+                  
+                  %td= vip_category.vip_references.count
+                  %td= link_to "#{vip_category.vip_references.pending.count}", referencelist_vip_category_path(vip_category)
+  
+          %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+            %td{:colspan=>"1"}
+              %b= "Total"
+            %td
+              %b= "#{VipReference.all.count}"
+            %td
+              %b= "#{VipReference.all.pending.count}"
+  
+  
+           
+  %div.col-md-4
+    %div.panel.panel-info
+    %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-family:verdana;"}
+      %b
+        %u
+          ="State Wise Listing of References:"
+    %div.panel-body
+      %table.table.table-striped
+        
+        -if !@senders.nil?
+          %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+           
+            %td
+              %b= "State"
+            %td
+              %b= "Total References"
+              
+          - @senders.try :each_with_index do |sender,index|
+            %tr
+              %td= sender[0]
+              %td= sender[1]
+  
+          %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+            %td{:colspan=>"1"}
+              %b= "Total"
+            %td
+              %b= "#{VipReference.all.count}"
+  
+%div.col-md-6
+  %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-family:verdana;"}
+    %b
+      =" Section-wise disposal summary:"
+    %u
+      =link_to "Download PDF", vip_ref_app_disposalreport_path(:format => 'pdf',:download=>'true')
+  %div.panel-body
+    %table.table.table-striped
+      -if !@sectionsbydisposal.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+            %b="S.No."
+          %td
+            %b= "Section"
+          %td
+            %b= "Total"
+          %td
+            %b= "Closed"
+          %td
+            %b= "Pending"
+          %td
+            %b= "Disposal Rate"
+            
+            
+        - @sectionsbydisposal.try :each_with_index do |section,index|
+          %tr  
+            %td= index+1       
+            %td= section.name
+            %td= "#{section.vip_references.vip.count}"
+            %td= "#{section.vip_references.vip.closed.count}"          
+            %td= "#{section.vip_references.vip.pending.count}"
+            %td= "#{(section.vip_references.vip.closed.count*100/section.vip_references.vip.count.to_f).round()}%"
+
+%div.col-md-6
+  %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-family:verdana;"}
+    %b
+      %u
+        = "Instructions:"
+  
+  %div.panel-body
+        
+    %font{:color=>'red'}="[New] Sections are requested to kindly verify the data displayed in above table."
+    %br
+    %br
+    %font{:color=>'red'}="For any technical assistance kindly contact NIC Cell, M/o CA at ext. 2880"
+    %br
+    %br
+    ="User Accounts for Officers of level SO and above have already been created into system, so they can directly login with thier NICEmail Id and default password ."
+    %br
+    %br
+    %div{:style=>"color: #23648d; "}
+      = "All Section Officers are requested to get an individual user account created for each of their staff posted in their section for VRMS usage, through sign-up link and later activate it through -->Settings--> Manage contacts Page. "
+    %br
+    %br
+
+    %font{:color=>'red'}="All below S.O. Level Users are requested to submit a signup request through sign-up link provided on the top bar, and get it approved/activated by your office' incharge (i.e.  SO/US/Director)."
+    %br
+    %br
+    ="For changing the default password, New Password must contain at least one capital, one numeric and one special character with minimum pwd length of 8 characters."

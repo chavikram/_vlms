@@ -1,0 +1,483 @@
+# Logfile created on 2015-08-28 13:58:37 +0530 by logger.rb/47272
+D, [2015-08-28T13:58:48.109410 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:48.109599 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:48.110035 #7987]  INFO -- : Started GET "/vip_references" for 127.0.0.1 at 2015-08-28 13:58:48 +0530
+D, [2015-08-28T13:58:48.156678 #7987] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2015-08-28T13:58:48.211236 #7987]  INFO -- : Processing by VipReferencesController#index as HTML
+D, [2015-08-28T13:58:48.231009 #7987] DEBUG -- :   [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 4  ORDER BY "users"."id" ASC LIMIT 1
+D, [2015-08-28T13:58:48.293945 #7987] DEBUG -- :   [1m[36mSection Load (0.5ms)[0m  [1mSELECT "sections".* FROM "sections"[0m
+D, [2015-08-28T13:58:48.304469 #7987] DEBUG -- :   [1m[35mVipRefStatus Load (0.7ms)[0m  SELECT "vip_ref_statuses".* FROM "vip_ref_statuses"
+I, [2015-08-28T13:58:48.316286 #7987]  INFO -- :   Rendered vip_references/index.html.haml within layouts/application (40.9ms)
+I, [2015-08-28T13:58:48.688231 #7987]  INFO -- :   Rendered layouts/_javascripts.html.haml (1.6ms)
+I, [2015-08-28T13:58:48.688391 #7987]  INFO -- :   Rendered layouts/_navigation.html.haml (10.4ms)
+I, [2015-08-28T13:58:48.691403 #7987]  INFO -- :   Rendered layouts/_sidebar.html.haml (2.1ms)
+I, [2015-08-28T13:58:48.693178 #7987]  INFO -- :   Rendered layouts/_footer.html.haml (0.9ms)
+I, [2015-08-28T13:58:48.693617 #7987]  INFO -- : Completed 200 OK in 482ms (Views: 420.2ms | ActiveRecord: 7.6ms)
+D, [2015-08-28T13:58:50.548252 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:50.548423 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:50.548712 #7987]  INFO -- : Started GET "/vip_references/new" for 127.0.0.1 at 2015-08-28 13:58:50 +0530
+I, [2015-08-28T13:58:50.558001 #7987]  INFO -- : Processing by VipReferencesController#new as HTML
+D, [2015-08-28T13:58:50.560971 #7987] DEBUG -- :   [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 4  ORDER BY "users"."id" ASC LIMIT 1[0m
+D, [2015-08-28T13:58:50.633605 #7987] DEBUG -- :   [1m[35mSection Load (0.5ms)[0m  SELECT "sections".* FROM "sections"
+D, [2015-08-28T13:58:50.635532 #7987] DEBUG -- :   [1m[36mVipRefStatus Load (0.4ms)[0m  [1mSELECT "vip_ref_statuses".* FROM "vip_ref_statuses"[0m
+D, [2015-08-28T13:58:50.642864 #7987] DEBUG -- :   [1m[35mVipCategory Load (0.6ms)[0m  SELECT "vip_categories".* FROM "vip_categories"
+I, [2015-08-28T13:58:50.650980 #7987]  INFO -- :   Rendered vip_references/_form.html.haml (64.4ms)
+I, [2015-08-28T13:58:50.655549 #7987]  INFO -- :   Rendered vip_references/new.html.haml within layouts/application (72.0ms)
+I, [2015-08-28T13:58:50.908394 #7987]  INFO -- :   Rendered layouts/_javascripts.html.haml (2.1ms)
+I, [2015-08-28T13:58:50.908542 #7987]  INFO -- :   Rendered layouts/_navigation.html.haml (8.0ms)
+I, [2015-08-28T13:58:50.911318 #7987]  INFO -- :   Rendered layouts/_sidebar.html.haml (1.9ms)
+I, [2015-08-28T13:58:50.918849 #7987]  INFO -- :   Rendered layouts/_footer.html.haml (0.8ms)
+I, [2015-08-28T13:58:50.919230 #7987]  INFO -- : Completed 200 OK in 361ms (Views: 335.8ms | ActiveRecord: 8.8ms)
+D, [2015-08-28T13:58:54.324232 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.324467 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.325734 #7987]  INFO -- : Started GET "/vip_references?utf8=%E2%9C%93&vip_reference%5Bletter_no%5D=&vip_reference%5Bletter_date%281i%29%5D=2015&vip_reference%5Bletter_date%282i%29%5D=8&vip_reference%5Bletter_date%283i%29%5D=28&vip_reference%5Bsubject%5D=&vip_reference%5Bdiaried_date%281i%29%5D=2015&vip_reference%5Bdiaried_date%282i%29%5D=8&vip_reference%5Bdiaried_date%283i%29%5D=28&vip_reference%5Breceived_on%281i%29%5D=2015&vip_reference%5Breceived_on%282i%29%5D=8&vip_reference%5Breceived_on%283i%29%5D=28&vip_reference%5Bsender_name%5D=&vip_reference%5Beoffice_receipt_no%5D=&vip_reference%5Beoffice_file_no%5D=&vip_reference%5Bsection_id%5D=1&vip_reference%5Bvip_ref_status_id%5D=2&vip_reference%5Bvip_category_id%5D=2&vip_reference%5Bsummary%5D=&commit=Save" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+I, [2015-08-28T13:58:54.335541 #7987]  INFO -- : Processing by VipReferencesController#index as HTML
+I, [2015-08-28T13:58:54.335854 #7987]  INFO -- :   Parameters: {"utf8"=>"✓", "vip_reference"=>{"letter_no"=>"", "letter_date(1i)"=>"2015", "letter_date(2i)"=>"8", "letter_date(3i)"=>"28", "subject"=>"", "diaried_date(1i)"=>"2015", "diaried_date(2i)"=>"8", "diaried_date(3i)"=>"28", "received_on(1i)"=>"2015", "received_on(2i)"=>"8", "received_on(3i)"=>"28", "sender_name"=>"", "eoffice_receipt_no"=>"", "eoffice_file_no"=>"", "section_id"=>"1", "vip_ref_status_id"=>"2", "vip_category_id"=>"2", "summary"=>""}, "commit"=>"Save"}
+D, [2015-08-28T13:58:54.338591 #7987] DEBUG -- :   [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 4  ORDER BY "users"."id" ASC LIMIT 1[0m
+D, [2015-08-28T13:58:54.351069 #7987] DEBUG -- :   [1m[35mSection Load (0.5ms)[0m  SELECT "sections".* FROM "sections"
+D, [2015-08-28T13:58:54.353208 #7987] DEBUG -- :   [1m[36mVipRefStatus Load (0.4ms)[0m  [1mSELECT "vip_ref_statuses".* FROM "vip_ref_statuses"[0m
+I, [2015-08-28T13:58:54.356145 #7987]  INFO -- :   Rendered vip_references/index.html.haml within layouts/application (6.6ms)
+I, [2015-08-28T13:58:54.637393 #7987]  INFO -- :   Rendered layouts/_javascripts.html.haml (0.1ms)
+I, [2015-08-28T13:58:54.637511 #7987]  INFO -- :   Rendered layouts/_navigation.html.haml (1.3ms)
+I, [2015-08-28T13:58:54.638340 #7987]  INFO -- :   Rendered layouts/_sidebar.html.haml (0.2ms)
+I, [2015-08-28T13:58:54.639057 #7987]  INFO -- :   Rendered layouts/_footer.html.haml (0.1ms)
+I, [2015-08-28T13:58:54.639352 #7987]  INFO -- : Completed 200 OK in 303ms (Views: 292.4ms | ActiveRecord: 1.5ms)
+D, [2015-08-28T13:58:54.661356 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.674187 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.680216 #7987]  INFO -- : Started GET "/assets/complaint_movement.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.694179 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.694312 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.696923 #7987]  INFO -- : Started GET "/assets/complaints.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.702272 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.702432 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.703632 #7987]  INFO -- : Started GET "/assets/complaint_status.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.712130 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.712272 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.712541 #7987]  INFO -- : Started GET "/assets/homes.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.717796 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.719750 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.719972 #7987]  INFO -- : Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.724876 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.724991 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.726932 #7987]  INFO -- : Started GET "/assets/complaint_types.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.731787 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.731903 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.733881 #7987]  INFO -- : Started GET "/assets/registrations.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.741100 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.741234 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.741513 #7987]  INFO -- : Started GET "/assets/offices.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.749018 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.749094 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.749275 #7987]  INFO -- : Started GET "/assets/handlers.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.756122 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.756232 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.756458 #7987]  INFO -- : Started GET "/assets/statuses.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.764440 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.764547 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.766808 #7987]  INFO -- : Started GET "/assets/vip_references.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.771706 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.771816 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.773796 #7987]  INFO -- : Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.798624 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.798737 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.798998 #7987]  INFO -- : Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.808412 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.808528 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.809001 #7987]  INFO -- : Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.819588 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.819729 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.820351 #7987]  INFO -- : Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.831488 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.831613 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.831907 #7987]  INFO -- : Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.841440 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.841551 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.843606 #7987]  INFO -- : Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.849262 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.851155 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.851358 #7987]  INFO -- : Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.858395 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.858498 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.858692 #7987]  INFO -- : Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.866575 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.866639 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.866831 #7987]  INFO -- : Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.875132 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.875248 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.875454 #7987]  INFO -- : Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.883126 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.885022 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.885217 #7987]  INFO -- : Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.890693 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.890806 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.893131 #7987]  INFO -- : Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.899241 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.901164 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.901345 #7987]  INFO -- : Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.908372 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.909518 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.909728 #7987]  INFO -- : Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.916033 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.916160 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.918128 #7987]  INFO -- : Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.923736 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.923846 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.924040 #7987]  INFO -- : Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.929533 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.929648 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.929876 #7987]  INFO -- : Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.935453 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.935558 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.935788 #7987]  INFO -- : Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.948554 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.948639 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.948831 #7987]  INFO -- : Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.954796 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.954891 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.955099 #7987]  INFO -- : Started GET "/assets/jquery_nested_form.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.960633 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.960716 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.960869 #7987]  INFO -- : Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.966972 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.967117 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.967363 #7987]  INFO -- : Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.973974 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.974061 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.974322 #7987]  INFO -- : Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+D, [2015-08-28T13:58:54.997691 #7987] DEBUG -- : 
+D, [2015-08-28T13:58:54.997793 #7987] DEBUG -- : 
+I, [2015-08-28T13:58:54.997938 #7987]  INFO -- : Started GET "/javascripts/head.js" for 127.0.0.1 at 2015-08-28 13:58:54 +0530
+F, [2015-08-28T13:58:55.001881 #7987] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/javascripts/head.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:22:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/vikram/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/vikram/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/vikram/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+I, [2015-08-28T13:58:55.024461 #7987]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+I, [2015-08-28T13:58:55.065627 #7987]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (8.4ms)
+I, [2015-08-28T13:58:55.073476 #7987]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.4ms)
+I, [2015-08-28T13:58:55.073705 #7987]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (62.9ms)
+D, [2015-08-28T14:01:25.344512 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.344717 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.345344 #8147]  INFO -- : Started GET "/vip_references/" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:25.389225 #8147] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2015-08-28T14:01:25.436945 #8147]  INFO -- : Processing by VipReferencesController#index as HTML
+D, [2015-08-28T14:01:25.454660 #8147] DEBUG -- :   [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 4  ORDER BY "users"."id" ASC LIMIT 1
+D, [2015-08-28T14:01:25.510423 #8147] DEBUG -- :   [1m[36mSection Load (0.8ms)[0m  [1mSELECT "sections".* FROM "sections"[0m
+D, [2015-08-28T14:01:25.520106 #8147] DEBUG -- :   [1m[35mVipRefStatus Load (0.8ms)[0m  SELECT "vip_ref_statuses".* FROM "vip_ref_statuses"
+I, [2015-08-28T14:01:25.528799 #8147]  INFO -- :   Rendered vip_references/index.html.haml within layouts/application (35.4ms)
+I, [2015-08-28T14:01:25.865758 #8147]  INFO -- :   Rendered layouts/_javascripts.html.haml (1.5ms)
+I, [2015-08-28T14:01:25.865894 #8147]  INFO -- :   Rendered layouts/_navigation.html.haml (6.3ms)
+I, [2015-08-28T14:01:25.868638 #8147]  INFO -- :   Rendered layouts/_sidebar.html.haml (2.0ms)
+I, [2015-08-28T14:01:25.873455 #8147]  INFO -- :   Rendered layouts/_footer.html.haml (4.0ms)
+I, [2015-08-28T14:01:25.873849 #8147]  INFO -- : Completed 200 OK in 437ms (Views: 384.6ms | ActiveRecord: 9.1ms)
+D, [2015-08-28T14:01:25.914171 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.914614 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.917684 #8147]  INFO -- : Started GET "/assets/complaint_movement.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:25.930790 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.930915 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.931162 #8147]  INFO -- : Started GET "/assets/complaint_status.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:25.943931 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.946013 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.946316 #8147]  INFO -- : Started GET "/assets/complaint_types.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:25.952161 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.952265 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.954545 #8147]  INFO -- : Started GET "/assets/handlers.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:25.960328 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.960444 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.960718 #8147]  INFO -- : Started GET "/assets/offices.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:25.969174 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.969294 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.972487 #8147]  INFO -- : Started GET "/assets/homes.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:25.979595 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.979735 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.981893 #8147]  INFO -- : Started GET "/assets/complaints.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:25.986894 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.987035 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.989753 #8147]  INFO -- : Started GET "/assets/registrations.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:25.995353 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:25.995459 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:25.997380 #8147]  INFO -- : Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:25 +0530
+D, [2015-08-28T14:01:26.002576 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.002690 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.004477 #8147]  INFO -- : Started GET "/assets/statuses.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.012019 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.012133 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.012367 #8147]  INFO -- : Started GET "/assets/vip_references.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.018122 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.020083 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.020269 #8147]  INFO -- : Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.046311 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.048509 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.048678 #8147]  INFO -- : Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.055909 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.056049 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.056220 #8147]  INFO -- : Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.061586 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.063428 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.063607 #8147]  INFO -- : Started GET "/javascripts/head.js" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+F, [2015-08-28T14:01:26.067247 #8147] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/javascripts/head.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:22:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/vikram/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/vikram/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/vikram/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+I, [2015-08-28T14:01:26.088185 #8147]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+I, [2015-08-28T14:01:26.157350 #8147]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (13.8ms)
+I, [2015-08-28T14:01:26.170173 #8147]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.4ms)
+I, [2015-08-28T14:01:26.170466 #8147]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (94.3ms)
+D, [2015-08-28T14:01:26.172294 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.172456 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.172856 #8147]  INFO -- : Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.180289 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.180409 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.180711 #8147]  INFO -- : Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.192512 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.192627 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.192907 #8147]  INFO -- : Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.208124 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.208264 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.208678 #8147]  INFO -- : Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.217166 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.219479 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.221459 #8147]  INFO -- : Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.230689 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.230840 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.233751 #8147]  INFO -- : Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.243819 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.246776 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.247257 #8147]  INFO -- : Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.257851 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.257979 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.258202 #8147]  INFO -- : Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.269290 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.269407 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.271380 #8147]  INFO -- : Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.277217 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.277426 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.279510 #8147]  INFO -- : Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.285331 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.287212 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.287405 #8147]  INFO -- : Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.295850 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.295961 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.296156 #8147]  INFO -- : Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.302121 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.304626 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.304839 #8147]  INFO -- : Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.311687 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.314221 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.314587 #8147]  INFO -- : Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.323560 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.323665 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.325763 #8147]  INFO -- : Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.346082 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.346166 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.346325 #8147]  INFO -- : Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.356480 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.356615 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.357237 #8147]  INFO -- : Started GET "/assets/jquery_nested_form.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.369491 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.369663 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.370798 #8147]  INFO -- : Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.380861 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.381077 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.381353 #8147]  INFO -- : Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:26.390165 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:26.390274 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:26.390519 #8147]  INFO -- : Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:26 +0530
+D, [2015-08-28T14:01:28.918048 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:28.918672 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:28.918892 #8147]  INFO -- : Started GET "/vip_references/new" for 127.0.0.1 at 2015-08-28 14:01:28 +0530
+I, [2015-08-28T14:01:28.927932 #8147]  INFO -- : Processing by VipReferencesController#new as HTML
+D, [2015-08-28T14:01:28.931760 #8147] DEBUG -- :   [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 4  ORDER BY "users"."id" ASC LIMIT 1[0m
+D, [2015-08-28T14:01:29.013628 #8147] DEBUG -- :   [1m[35mSection Load (0.4ms)[0m  SELECT "sections".* FROM "sections"
+D, [2015-08-28T14:01:29.015480 #8147] DEBUG -- :   [1m[36mVipRefStatus Load (0.4ms)[0m  [1mSELECT "vip_ref_statuses".* FROM "vip_ref_statuses"[0m
+D, [2015-08-28T14:01:29.021587 #8147] DEBUG -- :   [1m[35mVipCategory Load (0.5ms)[0m  SELECT "vip_categories".* FROM "vip_categories"
+I, [2015-08-28T14:01:29.029848 #8147]  INFO -- :   Rendered vip_references/_form.html.haml (68.6ms)
+I, [2015-08-28T14:01:29.033222 #8147]  INFO -- :   Rendered vip_references/new.html.haml within layouts/application (76.5ms)
+I, [2015-08-28T14:01:29.265865 #8147]  INFO -- :   Rendered layouts/_javascripts.html.haml (1.5ms)
+I, [2015-08-28T14:01:29.265996 #8147]  INFO -- :   Rendered layouts/_navigation.html.haml (6.3ms)
+I, [2015-08-28T14:01:29.269121 #8147]  INFO -- :   Rendered layouts/_sidebar.html.haml (2.2ms)
+I, [2015-08-28T14:01:29.276386 #8147]  INFO -- :   Rendered layouts/_footer.html.haml (0.7ms)
+I, [2015-08-28T14:01:29.276699 #8147]  INFO -- : Completed 200 OK in 349ms (Views: 322.1ms | ActiveRecord: 7.4ms)
+D, [2015-08-28T14:01:33.303746 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.303859 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.304679 #8147]  INFO -- : Started GET "/vip_references?utf8=%E2%9C%93&vip_reference%5Bletter_no%5D=&vip_reference%5Bletter_date%281i%29%5D=2015&vip_reference%5Bletter_date%282i%29%5D=8&vip_reference%5Bletter_date%283i%29%5D=28&vip_reference%5Bsubject%5D=&vip_reference%5Bdiaried_date%281i%29%5D=2015&vip_reference%5Bdiaried_date%282i%29%5D=8&vip_reference%5Bdiaried_date%283i%29%5D=28&vip_reference%5Breceived_on%281i%29%5D=2015&vip_reference%5Breceived_on%282i%29%5D=8&vip_reference%5Breceived_on%283i%29%5D=28&vip_reference%5Bsender_name%5D=&vip_reference%5Beoffice_receipt_no%5D=&vip_reference%5Beoffice_file_no%5D=&vip_reference%5Bsection_id%5D=1&vip_reference%5Bvip_ref_status_id%5D=2&vip_reference%5Bvip_category_id%5D=2&vip_reference%5Bsummary%5D=&commit=Save" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+I, [2015-08-28T14:01:33.311865 #8147]  INFO -- : Processing by VipReferencesController#index as HTML
+I, [2015-08-28T14:01:33.312048 #8147]  INFO -- :   Parameters: {"utf8"=>"✓", "vip_reference"=>{"letter_no"=>"", "letter_date(1i)"=>"2015", "letter_date(2i)"=>"8", "letter_date(3i)"=>"28", "subject"=>"", "diaried_date(1i)"=>"2015", "diaried_date(2i)"=>"8", "diaried_date(3i)"=>"28", "received_on(1i)"=>"2015", "received_on(2i)"=>"8", "received_on(3i)"=>"28", "sender_name"=>"", "eoffice_receipt_no"=>"", "eoffice_file_no"=>"", "section_id"=>"1", "vip_ref_status_id"=>"2", "vip_category_id"=>"2", "summary"=>""}, "commit"=>"Save"}
+D, [2015-08-28T14:01:33.314074 #8147] DEBUG -- :   [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 4  ORDER BY "users"."id" ASC LIMIT 1[0m
+D, [2015-08-28T14:01:33.322588 #8147] DEBUG -- :   [1m[35mSection Load (0.5ms)[0m  SELECT "sections".* FROM "sections"
+D, [2015-08-28T14:01:33.324321 #8147] DEBUG -- :   [1m[36mVipRefStatus Load (0.5ms)[0m  [1mSELECT "vip_ref_statuses".* FROM "vip_ref_statuses"[0m
+I, [2015-08-28T14:01:33.326105 #8147]  INFO -- :   Rendered vip_references/index.html.haml within layouts/application (4.8ms)
+I, [2015-08-28T14:01:33.553613 #8147]  INFO -- :   Rendered layouts/_javascripts.html.haml (0.1ms)
+I, [2015-08-28T14:01:33.553768 #8147]  INFO -- :   Rendered layouts/_navigation.html.haml (1.3ms)
+I, [2015-08-28T14:01:33.554611 #8147]  INFO -- :   Rendered layouts/_sidebar.html.haml (0.2ms)
+I, [2015-08-28T14:01:33.555345 #8147]  INFO -- :   Rendered layouts/_footer.html.haml (0.1ms)
+I, [2015-08-28T14:01:33.555765 #8147]  INFO -- : Completed 200 OK in 243ms (Views: 235.9ms | ActiveRecord: 1.7ms)
+D, [2015-08-28T14:01:33.652672 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.652822 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.653122 #8147]  INFO -- : Started GET "/assets/complaint_movement.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.659448 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.659580 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.662739 #8147]  INFO -- : Started GET "/assets/complaint_types.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.666547 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.666773 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.668956 #8147]  INFO -- : Started GET "/assets/homes.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.675007 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.677928 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.678120 #8147]  INFO -- : Started GET "/assets/complaints.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.682287 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.682406 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.684494 #8147]  INFO -- : Started GET "/assets/handlers.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.688085 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.690761 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.691038 #8147]  INFO -- : Started GET "/assets/complaint_status.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.696125 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.698064 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.698286 #8147]  INFO -- : Started GET "/assets/offices.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.702186 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.704397 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.704631 #8147]  INFO -- : Started GET "/assets/registrations.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.710745 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.710853 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.711067 #8147]  INFO -- : Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.714693 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.716788 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.716984 #8147]  INFO -- : Started GET "/assets/statuses.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.720613 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.722417 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.722663 #8147]  INFO -- : Started GET "/assets/vip_references.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.728685 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.728791 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.728992 #8147]  INFO -- : Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.733369 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.735273 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.735495 #8147]  INFO -- : Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.742852 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.743045 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.743318 #8147]  INFO -- : Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.751007 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.751107 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.753832 #8147]  INFO -- : Started GET "/javascripts/head.js" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+F, [2015-08-28T14:01:33.757900 #8147] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/javascripts/head.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:22:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/vikram/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/vikram/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/vikram/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+I, [2015-08-28T14:01:33.774790 #8147]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+I, [2015-08-28T14:01:33.813750 #8147]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (8.7ms)
+I, [2015-08-28T14:01:33.820448 #8147]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+I, [2015-08-28T14:01:33.820635 #8147]  INFO -- :   Rendered /home/vikram/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (54.1ms)
+D, [2015-08-28T14:01:33.821873 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.824467 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.824688 #8147]  INFO -- : Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.830651 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.830755 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.830962 #8147]  INFO -- : Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.837104 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.839423 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.840655 #8147]  INFO -- : Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.844740 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.846769 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.851301 #8147]  INFO -- : Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.856666 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.856777 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.857190 #8147]  INFO -- : Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.866498 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.866622 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.866890 #8147]  INFO -- : Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.874683 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.874799 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.877806 #8147]  INFO -- : Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.884632 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.884739 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.884954 #8147]  INFO -- : Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.889065 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.889371 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.891428 #8147]  INFO -- : Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.895535 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.897600 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.897810 #8147]  INFO -- : Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.901890 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.902002 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.902213 #8147]  INFO -- : Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.909761 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.909871 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.910073 #8147]  INFO -- : Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.913928 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.914066 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.916953 #8147]  INFO -- : Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.922386 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.922524 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.922738 #8147]  INFO -- : Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.930406 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.930502 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.930718 #8147]  INFO -- : Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.934492 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.934595 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.934877 #8147]  INFO -- : Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.939282 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.939406 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.939726 #8147]  INFO -- : Started GET "/assets/jquery_nested_form.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.945155 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.945215 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.945394 #8147]  INFO -- : Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.949208 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.949329 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.949664 #8147]  INFO -- : Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530
+D, [2015-08-28T14:01:33.953325 #8147] DEBUG -- : 
+D, [2015-08-28T14:01:33.953408 #8147] DEBUG -- : 
+I, [2015-08-28T14:01:33.953591 #8147]  INFO -- : Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-08-28 14:01:33 +0530

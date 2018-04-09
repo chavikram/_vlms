@@ -1,0 +1,35 @@
+= form_for [@office,@contact] do |f|
+  - if @contact.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@contact.errors.count, "error")} prohibited this contact from being saved:"
+      %ul
+        - @contact.errors.full_messages.each do |msg|
+          %li= msg
+  %div.row.top-buffer
+    %div.col-md-4=f.label :name
+    %div.col-md-8=f.text_field :name, :class=>'form-control'
+  %div.row.top-buffer
+    %div.col-md-4=f.label :designation
+    %div.col-md-4= f.collection_select(:designation_id, Designation.all, :id,:name,{}, {:class=>'form-control'})
+  %div.row.top-buffer
+    %div.col-md-4=f.label :room_no
+    %div.col-md-8=f.text_field :room_no, :class=>'form-control'
+  %div.row.top-buffer
+    %div.col-md-4=f.label :contact_no
+    %div.col-md-8=f.text_field :contact_no, :class=>'form-control'
+  %div.row.top-buffer
+    %div.col-md-4=f.label :intercom
+    %div.col-md-8=f.text_field :intercom, :class=>'form-control'
+  %div.row.top-buffer
+    %div.col-md-4=f.label :office
+    %div.col-md-4= f.collection_select(:office_id, Office.all, :id,:name,{:selected => @office.id.to_i}, {:class=>'form-control',:readonly=> true})
+  %div.row.top-buffer
+    %div.col-md-4=f.label :user
+    %div.col-md-4= f.collection_select(:user_id, User.all, :id,:email,{}, {:class=>'form-control'})
+  %div.row.top-buffer
+    %div.col-md-4= f.label :active
+    %div.col-md-8= f.check_box :active , {:class=>'checkbox'}
+  %div.row.top-buffer
+    %div.col-md-12
+      = f.submit :class=>'btn btn-default'
+      

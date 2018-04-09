@@ -1,0 +1,27 @@
+= form_for @complaint_type do |f|
+  - if @complaint_type.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@complaint_type.errors.count, "error")} prohibited this complaint_type from being saved:"
+      %ul
+        - @complaint_type.errors.full_messages.each do |msg|
+          %li= msg
+
+  %br
+  .input-group.col-md-6
+    = f.label :problem,:class=>'col-md-2'
+    = f.text_field :problem,:class=>'col-md-6'
+  %br
+  .input-group.col-md-6
+    = f.label :solution,:class=>'col-md-2'
+    = f.text_area :solution,:class=>'col-md-6'
+  %br
+  .input-group.col-md-6
+    = f.label :handler_id,:class=>'col-md-2'
+    = f.collection_select :handler_id, Handler.all, :id, :name,{},{:class=>'col-md-6'}
+  %br
+  .input-group.col-md-6
+    = f.label :level,:class=>'col-md-2'
+    = f.text_field :level,:class=>'col-md-6'
+  %br
+  .actions
+    = f.submit 'Save', :class=> "btn btn-default btn-primary"

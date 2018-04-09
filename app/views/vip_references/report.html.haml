@@ -1,0 +1,28 @@
+%table.table
+  -if !@vip_references.nil?
+    %tr
+      %th= "S.No."
+      %th= "Letter No."
+      %th= "Letter Date"
+      %th= "Subject"
+      %th= "Diary Date"
+      %th= "Sender Name"
+      %th= "Dealing Section"
+      %th= "Status"
+      %th= "VIP Category"
+      %th= "Summary"
+      
+    - @vip_references.each_with_index do |reference,index|
+      %tr
+        %td=index+1
+        %td=reference.letter_no
+        %td=reference.letter_date
+        %td=reference.subject  
+        %td=reference.diaried_date
+        %td=reference.sender_name
+        %td=reference.section.name
+        %td=reference.vip_ref_status.status_name
+        %td=reference.vip_category.name
+        %td=reference.summary
+        
+ 

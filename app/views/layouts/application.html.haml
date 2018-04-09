@@ -1,0 +1,35 @@
+!!!
+%html.no-js{lang: 'en'}
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
+    %title= content_for?(:title) ? yield(:title) :"VIP References Monitoring System"
+    %meta{content: (content_for?(:description) ? yield(:description) : I18n.t('brand.name')), name: 'description'}
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'simple-sidebar', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'print', media: 'print', 'data-turbolinks-track' => true
+    =favicon_link_tag
+    /[if lt IE 9]
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+    = csrf_meta_tags
+    = yield :head
+    
+  %body{class: "controller__#{controller_name} action__#{action_name}"}
+    = render 'layouts/navigation'
+    %div#wrapper 
+      -if !current_user.nil?
+        %div#sidebar-wrapper
+          =render 'layouts/sidebar'
+      %div#page-content-wrapper 
+        %div.container-fluid
+          %div#content.col-md-12
+            %div.row
+              %div{:style=>"color: red; font-weight: bolder;"}=flash[:error]
+              = yield
+    %footer.page__footer 
+      - if content_for? :footer
+        = yield :footer
+      - else
+        = render 'layouts/footer'
+        

@@ -1,0 +1,18 @@
+-if params[:page].to_i == 0
+  %td= index+1
+-else
+  %td= (params[:page].to_i-1)*10+index+1
+%td=reference.letter_no
+%td=l reference.letter_date,format: :default
+%td=reference.subject  
+%td=reference.section.name
+%td=reference.vip_category.s_name
+%td=reference.vip_ref_status.try(:status_name)
+%td=l reference.vip_ref_movements.first.sent_on
+%td
+  - if reference.vip_ref_movements.first.read_flag==true
+    =link_to 'View', reference
+  - else 
+    =link_to 'Open',vip_reference_vip_ref_movement_read_path( reference,reference.vip_ref_movements.first.id)
+
+

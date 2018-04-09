@@ -1,0 +1,25 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show State"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "State Name"
+        %td=@state.name
+      %tr
+        %td= "State Code"
+        %td= @state.code
+      %tr
+        %td= "Country Name"
+        %td= @state.country.name
+      %tr
+        %td= "Created At"
+        %td= @state.created_at.to_formatted_s(:long)
+      %tr
+        %td= "Updated At"
+        %td= @state.updated_at.to_formatted_s(:long)
+        
+= link_to 'Edit', edit_country_state_path(@country,@state)
+\|
+= link_to 'Back', country_states_path(@country)

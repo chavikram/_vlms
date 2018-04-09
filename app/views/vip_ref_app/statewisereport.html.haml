@@ -1,0 +1,27 @@
+%div.col-md-4
+  %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-family:verdana;"}
+
+    %b
+      %u
+        ="State Wise Listing of References:"
+  %div.panel-body
+    %table.table.table-striped
+      
+      -if !@senders.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+         
+          %td
+            %b= "State"
+          %td
+            %b= "Total References"
+            
+        - @senders.try :each_with_index do |sender,index|
+          %tr
+            %td= sender[0]
+            %td= sender[1]
+
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td{:colspan=>"1"}
+            %b= "Total"
+          %td
+            %b= "#{VipReference.all.count}"

@@ -1,0 +1,60 @@
+
+
+%div.row
+  %div.col-md-12.col-md-offset-4
+
+    
+    = form_tag '/vip_references' , :method=>'get' do |f|
+      %div.row
+        %div.col-md-4
+          %div.row
+            %label.col-md-4="Category:"
+            %div.col-md-8= select_tag "category_id",options_from_collection_for_select(Category.all, "id", "name","#{params[:category_id]}"),:onChange => "$(this).closest('form').attr('action', '#{ vip_ref_app_sent_path(format: :html) }');$(this).closest('form').submit();",  :class=>'form-control'
+
+        - if current_user.contact.designation.designation_code != 'SO' 
+          %div.col-md-4
+            %div.row
+              %label.col-md-4="View As:"
+              - if current_user.sections.count == 0
+                %div.col-md-8= ""
+              - else
+                %div.col-md-8=select_tag "section_id",options_from_collection_for_select(current_user.sections, "id", "name","#{params[:section_id]}"),:onChange => "$(this).closest('form').attr('action', '#{ vip_ref_app_sent_path(format: :html) }');$(this).closest('form').submit();",  :class=>'form-control'
+                
+
+
+    %div.row.top-buffer
+
+%div.panel.panel-info
+  %div.panel-heading="Transferred References"
+  %div.panel-body
+
+    %table.table.table-striped
+      -if !@transfers.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+            %b= "S.No."
+          %td
+            %b= "Ref.No."
+          %td
+            %b= "Subject"
+          %td
+            %b= "Diary Date"
+          %td
+            %b= "Transferred to"
+          %td
+            %b= "VIP Category"
+          %td
+            %b= "Transferred On"
+          %td
+            %b= "Transferred By"
+  
+      - @transfers.try :each_with_index do |transfer,index|
+        -if index%2==1
+          %tr.even
+            = render 'sent',:transfer => transfer, :index=> index
+        -else
+          %tr.odd
+            = render 'sent',:transfer => transfer, :index=> index
+
+      %tr
+        %td{:colspan=>'10'}= will_paginate @transfers

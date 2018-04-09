@@ -1,0 +1,37 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="List Offices"
+  %div.panel-body
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th Office Name
+          %th Incharge name
+          %th Designation
+          %th Room no
+          %th Floor
+          %th Quick Action
+      %tbody
+        %tr
+          = will_paginate @offices, renderer: BootstrapPagination::Rails
+        - @offices.each_with_index do |office,index|
+          %tr
+            - if params[:page].to_i == 0
+              %td= index+1
+            - else
+              %td= (params[:page].to_i-1)*10+index+1
+            %td=link_to "#{office.name}", office
+            -if !office.incharge.nil?
+              %td= link_to "#{office.try(:incharge).try(:name)}", office_contact_path(office,office.incharge)
+            -else 
+              %td= office.try(:incharge).try(:name)
+            %td= office.designation
+            %td= office.room_no
+            %td= office.floor
+            %td
+              = icon_link_to  edit_office_path(office),{:icon => "glyphicon glyphicon-edit"},{title:'Edit'}
+              |
+              = icon_link_to office,{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+%br
+  = link_to 'New Office', new_office_path

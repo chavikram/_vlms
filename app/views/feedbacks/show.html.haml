@@ -1,0 +1,36 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show Feedback"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Feedback Text"
+        %td=@feedback.feedback_text
+      %tr
+        %td= "Submitted On"
+        %td= l @feedback.submitted_on
+      %tr
+        %td= "Submitted By"
+        %td= @feedback.contact.name
+
+      %tr
+        %td= "Created At"
+        %td= @feedback.created_at.to_formatted_s(:long)
+      %tr
+        %td= "Updated At"
+        %td= @feedback.updated_at.to_formatted_s(:long)
+
+      %tr
+        %td= "Replies"
+        %td
+          - @feedback.feedback_replies.each_with_index do |fr,index|
+            %br
+            = "#{index+1}. #{fr.reply_text} (Replied On-#{l fr.replied_on})"
+            %br
+
+= link_to 'Edit', edit_office_contact_feedback_path(@office,@contact,@feedback)
+\|
+= link_to 'Back', office_contact_feedbacks_path(@office,@contact)
+
+=link_to 'Reply', new_office_contact_feedback_feedback_reply_path(@office,@contact,@feedback)

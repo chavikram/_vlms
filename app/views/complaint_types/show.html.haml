@@ -1,0 +1,19 @@
+%h1.header Complaint Type Details 
+%p#notice= notice
+
+%p
+  %b Problem:
+  = @complaint_type.problem
+%p
+  %b Solution:
+  = @complaint_type.solution
+%p
+  %b Handler:
+  = @complaint_type.handler_id
+%p
+  %b Level:
+  = @complaint_type.level
+
+= link_to 'Edit', edit_complaint_type_path(@complaint_type)
+\|
+= link_to 'Back', complaint_types_path

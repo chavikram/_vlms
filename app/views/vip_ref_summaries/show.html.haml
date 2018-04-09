@@ -1,0 +1,23 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show VIP Reference Summary"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Summary Text"
+        %td=@vip_ref_summary.summary_text
+      %tr
+        %td= "Created By"
+        %td= @vip_ref_summary.creator.email
+      %tr
+        %td= "Created At"
+        %td= l @vip_ref_summary.created_at
+      %tr
+        %td= "Updated At"
+        %td= l @vip_ref_summary.updated_at
+
+
+= link_to 'Edit', edit_vip_reference_vip_ref_summary_path(@vip_reference,@vip_ref_summary)
+\|
+= link_to 'Back', vip_reference_vip_ref_summaries_path

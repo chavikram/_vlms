@@ -1,0 +1,36 @@
+="#{notice}"
+%div.panel.panel-info
+  %div.panel-heading
+    ="Listing Categories"
+  %div.panel-body
+    %table.table
+      %thead
+        %tr
+          %th= "#"
+          %th= "Name"
+          %th= "Created At"
+          %th= "Updated At"
+          %th= "Quick Action"
+      %tbody      
+        %tr
+          = will_paginate @categories, renderer: BootstrapPagination::Rails
+
+        - @categories.each_with_index do |category,index|
+          %tr
+            -if params[:page].to_i == 0
+              %td= index+1
+            -else
+              %td= (params[:page].to_i-1)*20+index+1
+
+            %td=link_to "#{category.name}",category
+            %td= l category.created_at
+            %td= l category.updated_at
+            %td
+              = icon_link_to category,{:icon => "glyphicon glyphicon-open-file"},{title:'Show'}
+              |
+              = icon_link_to  edit_category_path(category),{:icon => "glyphicon glyphicon-edit"},{title:'Edit'}
+              |
+              = icon_link_to category,{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+
+
+= link_to 'Add New Category', new_category_path

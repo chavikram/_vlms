@@ -1,0 +1,36 @@
+%h1.header Listing statuses
+%br
+%table.table.table-bordered.table-hover
+  %tr
+    %th #
+    %th Type
+    %th Quick Action
+    %th
+    %th
+
+  - @statuses.each_with_index do |status,index|
+    
+    %tr
+      = will_paginate @statuses, renderer: BootstrapPagination::Rails
+    %tr
+      -if params[:page].to_i == 0
+        %td= index+1
+      -else
+        %td= (params[:page].to_i-1)*5+index+1
+      %td= status.type
+      /
+        %td= link_to 'Show', status
+        %td= link_to 'Edit', edit_status_path(status)
+        %td= link_to 'Destroy', status, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+      %td
+        = icon_link_to status,{:icon => "glyphicon glyphicon-open-file"},{}
+        |
+        = icon_link_to  edit_status_path(status),{:icon => "glyphicon glyphicon-edit"},{}
+        |
+        = icon_link_to status,{:icon => "glyphicon glyphicon-trash"},{:method => :delete, :data => { :confirm => 'Are you sure?' }}
+
+
+%br
+
+= link_to 'New Status', new_status_path

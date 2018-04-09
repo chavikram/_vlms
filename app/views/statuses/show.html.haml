@@ -1,0 +1,10 @@
+%h1.header Status Details
+%p#notice= notice
+
+%p
+  %b Type:
+  = @status.type
+
+= link_to 'Edit', edit_status_path(@status)
+\|
+= link_to 'Back', statuses_path

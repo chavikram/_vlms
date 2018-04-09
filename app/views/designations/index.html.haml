@@ -1,0 +1,36 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="Listing Designations"
+  %div.panel-body
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th Name
+          %th Code
+          %th Default
+          %th Created At
+          %th Updated At
+          %th Quick Action
+      %tbody      
+        %tr
+          = will_paginate @designations, renderer: BootstrapPagination::Rails
+
+      - @designations.each_with_index do |designation,index|
+        %tr
+          -if params[:page].to_i == 0
+            %td= index+1
+          -else
+            %td= (params[:page].to_i-1)*5+index+1
+          %td=link_to "#{designation.name}", designation
+          %td= designation.designation_code
+          %td= check_box_tag :default ,designation.default,designation.default, {:class=>'form-control',:disabled=>true}
+
+          %td= l designation.created_at
+          %td= l designation.updated_at
+          %td
+            = icon_link_to  edit_designation_path(designation),{:icon => "glyphicon glyphicon-edit"},{:title=>'Edit'}
+            |
+            = icon_link_to designation,{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+%br
+= link_to 'Add New Designation', new_designation_path

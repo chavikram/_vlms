@@ -1,0 +1,30 @@
+= form_for @vip_ref_status do |f|
+  - if @vip_ref_status.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@vip_ref_status.errors.count, "error")} prohibited this vip_ref_status from being saved:"
+      %ul
+        - @vip_ref_status.errors.full_messages.each do |msg|
+          %li= msg
+  %div.row.top-buffer
+    %div.col-md-4= f.label :status_name
+    %div.col-md-8= f.text_field :status_name, {:class=>'form-control'}
+  %div.row.top-buffer
+    %div.col-md-4= f.label :status_desc
+    %div.col-md-8= f.text_field :status_desc, {:class=>'form-control'}
+
+  %div.row.top-buffer
+    %div.col-md-4= f.label :default
+    %div.col-md-8= f.check_box :default , {:class=>'form-control'}
+
+  %div.row.top-buffer
+    %div.col-md-4= f.label :deleted
+    %div.col-md-8= f.check_box :deleted , {:class=>'form-control'}
+
+
+  %div.row.top-buffer
+    %div.col-md-9
+    %div.col-md-3
+      -if @vip_ref_status.new_record?
+        = f.submit 'Create', :class=> 'btn btn-primary'
+      -else
+        = f.submit 'Update', :class=> 'btn btn-primary'  

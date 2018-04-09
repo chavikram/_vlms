@@ -1,0 +1,14 @@
+= wicked_pdf_stylesheet_link_tag    'application', media: 'all'
+= wicked_pdf_javascript_include_tag "jsapi.js"
+= wicked_pdf_javascript_include_tag 'application','chartkick'
+
+
+%b="Pending VIP References of All Sections" 
+%br
+%u="Section-Wise"
+%br
+= pie_chart VipReference.vip.pending.group(:section).count
+
+%u="Category-Wise"
+%br
+= pie_chart VipReference.vip.pending.vip.group(:vip_category).count

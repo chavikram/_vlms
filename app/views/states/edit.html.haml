@@ -1,0 +1,9 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="Editing  State"
+  %div.panel-body
+    %div.col-md-8
+      = render 'form'
+    %div.col-md-4
+= link_to 'Show', country_state_path(@country,@state)
+= link_to 'Back', country_states_path(@country)

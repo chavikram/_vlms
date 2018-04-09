@@ -1,0 +1,29 @@
+= javascript_include_tag "jsapi.js", "chartkick"
+
+%b="Pending VIP References of All Sections" 
+%u
+  %i
+    =link_to " ( Refresh Page to display graphs)", vip_ref_app_chart_path
+=link_to " (Download PDF)", vip_ref_app_chart_path(:format=>'pdf') 
+%div.row.top-buffer
+  %div.col-md-6
+    %u="Section-Wise"
+    %br
+    = pie_chart VipReference.pending.vip.group(:section).count
+  %div.col-md-6
+    %u="Category-Wise"
+    %br
+    = pie_chart VipReference.pending.vip.group(:vip_category).count
+%b="Pending VIP References of sections under #{current_user.contact.office.name} office" 
+%div.row.top-buffer
+  %div.col-md-6
+    %u="Section-Wise"
+    %br
+    /= pie_chart VipReference.group(:section).count
+    = pie_chart VipReference.pending.where('section_id in (?)',current_user.sections.map(&:id)).group(:section).count      
+  %div.col-md-6
+    %u="Category-Wise"
+    %br
+    /= pie_chart VipReference.group(:vip_category).count
+    = pie_chart VipReference.pending.where('section_id in (?)',current_user.sections.map(&:id)).group(:vip_category).count
+    

@@ -1,0 +1,113 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+
+@import "bootstrap";
+@import "bootstrap-datepicker3";
+@import "bootstrap-sprockets";
+@import "nprogress";
+@import "nprogress-bootstrap";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: font-url('../assets/bootstrap/glyphicons-halflings-regular.eot');
+  src: font-url('../assets/bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+       font-url('../assets/bootstrap/glyphicons-halflings-regular.woff') format('woff'),
+       font-url('../assets/bootstrap/glyphicons-halflings-regular.ttf') format('truetype'),
+       font-url('../assets/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+sup{
+  color:#CC3366;
+}
+div.pagination{
+  @extend ul.pagination
+}
+body {
+  padding-top: 70px;
+}
+// Make sure alerts are nicely formatted
+.alert {
+  a {
+    white-space: nowrap;
+  }
+}
+.header{
+  color: white;
+  background-color: #428bca;
+  border-color: #357ebd;
+  margin-bottom: 0;
+  text-align: center;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 18px;
+  line-height: 1.428571429;
+  border-radius: 4px;
+}
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+.top-buffer { margin-top:10px; }
+.odd
+{
+background-color:white;
+//height:50px;
+vertical-align:middle;
+}
+.even
+{
+background-color:#F8F8F8;
+//height:50px;
+vertical-align:middle;
+}
+.page__footer {
+   /*position:absolute;*/
+   bottom:0px;
+   height:60px;   /* Height of the footer */
+}
+#error_explanation ul{
+  color:red;
+}
+.validation-error{
+  color:red;
+}
+#error_explanation h4{
+  color:green;
+}
+
+#error_explanation h5{
+  color:green;
+}
+.field_with_errors input{
+  //background-color:#FFE0E0;
+  border:1px solid #FF3333;
+}
+span#asterisk{
+  color:red;
+}
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+.panel-heading a.collapsed:after {
+    content:"\e080";
+}
+table{
+  font-family:verdana;
+}

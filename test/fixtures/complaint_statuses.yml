@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status_id: 1
+  remarks: MyString
+  'on': 2014-09-29 00:45:38
+
+two:
+  status_id: 1
+  remarks: MyString
+  'on': 2014-09-29 00:45:38

@@ -1,0 +1,28 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show Country"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Country Name"
+        %td=@country.name
+      %tr
+        %td= "Country Code"
+        %td= @country.code
+      %tr
+        %td= "Created At"
+        %td= @country.created_at.to_formatted_s(:long)
+      %tr
+        %td= "Updated At"
+        %td= @country.updated_at.to_formatted_s(:long)
+
+
+= link_to "Add a New State", new_country_state_path(@country)
+\|
+= link_to "State List", country_states_path(@country)
+\|
+= link_to 'Edit', edit_country_path(@country)
+\|
+= link_to 'Back', countries_path
+

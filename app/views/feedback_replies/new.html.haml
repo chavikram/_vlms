@@ -1,0 +1,10 @@
+%div.panel.panel-info
+  %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;"}
+    ="New  Feedback"
+  %div.panel-body{:style=>"color: #23648d;"}
+    %div.col-md-8
+      = render 'form'
+
+= link_to 'Back', office_contact_feedback_feedback_replies_path(@office,@contact,@feedback,@feedback_reply)
+|
+= link_to 'List of Feedbacks', office_contact_feedback_feedback_replies_path(@office,@contact,@feedback,@feedback_reply)

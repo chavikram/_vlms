@@ -1,0 +1,135 @@
+= javascript_include_tag 'vip_references', 'data-turbolinks-track' => true
+
+%div.panel.panel-info
+  %div.panel-heading
+    %div.panel-title
+      ="Search References"
+  %div.panel-body
+    = form_tag '/vip_references' , :method=>'get' do |f|
+      %div.row
+        %div.col-md-12
+          - if current_user.is_admin?
+            %div.row
+              %label.col-md-4="Dealing Section"
+              %div.col-md-8=select_tag "section_id", content_tag(:option,'Select',:value=>"0")+ options_from_collection_for_select(Section.all, "id", "name","#{params[:section_id]}"), :class=>'form-control'
+          - else
+            %div.row
+              %label.col-md-4="Dealing Section"
+              %div.col-md-8=select_tag "section_id", content_tag(:option,'Select',:value=>"0")+ options_from_collection_for_select(current_user.sections, "id", "name","#{params[:section_id]}"), :class=>'form-control'
+ 
+          %div.row.top-buffer                 
+            %label.col-md-4="Status"
+            %div.col-md-8=select_tag "vip_ref_status_id",content_tag(:option,'Select',:value=>"0")+ options_from_collection_for_select(VipRefStatus.all, "id", "status_name","#{params[:vip_ref_status_id]}"), :class=>'form-control'
+          %div.row.top-buffer
+            %label.col-md-4
+              ="Letter Category"
+              %span#asterisk *
+            %div.col-md-8=select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name","#{params[:category_id]}"), :class=>'form-control'
+          %div.row.top-buffer
+            %label.col-md-4
+              ="Sub Category"
+              %span#asterisk *
+            %div.col-md-8=select_tag "vip_category_id",content_tag(:option,'Select',:value=>"0")+ options_from_collection_for_select(VipCategory.where('category_id=?',params[:category_id]), "id", "name","#{params[:vip_category_id]}"), :class=>'form-control'
+          %div.row.top-buffer                 
+            %label.col-md-4="Vip Reference No"
+            %div.col-md-8=text_field_tag "vip_ref_id","#{params[:vip_ref_id]}" ,:class=>'form-control',:onclick=>"this.value=''"
+          %div.row.top-buffer                 
+            %label.col-md-4
+              ="Subject"
+              %sup
+                [New]
+            %div.col-md-8=text_field_tag "subject","#{params[:subject]}" ,:class=>'form-control',:onclick=>"this.value=''"
+
+          %div.row.top-buffer                 
+            %label.col-md-12="Diary Date Range:"            
+                
+          %div.row.top-buffer                 
+            %label.col-md-4="From:"
+            %div.col-md-8= text_field_tag "diary_date_from",{}, {'data-provide'=>'datepicker','class'=>'form-control','data-date-format'=>'dd/mm/yyyy',:value=>"#{params[:diary_date_from]}"}
+          %div.row.top-buffer                 
+            %label.col-md-4="To:"
+            %div.col-md-8= text_field_tag "diary_date_to", {},{'data-provide'=>'datepicker','class'=>'form-control','data-date-format'=>'dd/mm/yyyy',:value=>"#{params[:diary_date_to]}"}
+
+          %div.row.top-buffer
+            %div.col-md-12 
+              =submit_tag "Display on Page", onClick: "$(this).closest('form').attr('action', '#{ vip_references_path(format: :html) }')", :class=>'btn btn-default'
+              =submit_tag " Get PDF", onClick: "$(this).closest('form').attr('action', '#{ vip_references_path(format: :pdf) }')",:class=>'btn btn-default'              
+              /
+                =submit_tag "Get CSV", onClick: "$(this).closest('form').attr('action', '#{ vip_references_path(format: :csv) }')",:class=>'btn btn-default'              
+              /
+                =submit_tag "Get Excel", onClick: "$(this).closest('form').attr('action', '#{ vip_references_path(format: :xls) }')",:class=>'btn btn-default'
+              =submit_tag "Get Excel", onClick: "$(this).closest('form').attr('action', '#{ vip_references_path(format: :xlsx) }')",:class=>'btn btn-default'
+      %table.table.table-striped
+        %thead
+        -if !@vip_references.nil?
+          %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+            %td
+              %b= "S.No."
+            %td
+              %b= "Ref No."
+            %td
+              %b= "Subject"
+            %td
+              %b= "Letter No/Date"
+            %td
+              %b= "Letter Category"
+            %td
+              %b= "Sender Details"
+            %td
+              %b= "Dealing Section"
+            %td
+              %b= "Receipt Diary Date"
+              %i{:class=>"glyphicon glyphicon-sort-by-attributes"}
+            /
+              %td
+                %b= "Currenly With"
+            %td
+              %b= "Status"
+            %td
+              %b= "Last Summary"
+            %td
+              %b= "Quick Action"
+          %tbody
+            %tr
+            -if !@vip_references.nil?
+              = will_paginate @vip_references, renderer: BootstrapPagination::Rails
+  
+          - @vip_references.each_with_index do |reference,index|
+            %tr
+              -if params[:page].to_i == 0
+                %td= index+1
+              -else
+                %td= (params[:page].to_i-1)*10+index+1
+              %td=link_to "#{reference.id}", reference
+              %td=reference.subject  
+              %td="#{reference.letter_no}   (#{l reference.letter_date})"
+              %td
+                ="#{reference.vip_category.category.name}-#{reference.vip_category.name}"
+              
+              %td
+                =reference.sender.try(:name)
+                %br
+                =reference.sender.try(:designation)
+
+              %td=link_to reference.section.name, section_path(reference.section)
+              %td=l reference.diaried_date
+              /
+                -if reference.vip_ref_movements.count!=0
+                  %td=User.find(reference.vip_ref_movements.first.sent_to).contact.office.name
+                - else
+                  %td="***"
+              %td=reference.vip_ref_status.status_name
+              - if reference.vip_ref_summaries.size>0
+                %td
+                  ="#{reference.vip_ref_summaries.try(:first).try(:summary_text)}"
+                  %br
+                  =link_to "(#{reference.vip_ref_summaries.size}#{reference.vip_ref_summaries.size.ordinal} update #{time_ago_in_words(reference.vip_ref_summaries.first.updated_at)} ago)", vip_reference_vip_ref_summaries_path(reference) 
+              - else
+                %td
+              %td
+                = icon_link_to reference,{:icon => "glyphicon glyphicon-open-file"},{title:'Show'}
+                |
+                = icon_link_to  edit_vip_reference_path(reference),{:icon => "glyphicon glyphicon-edit"},{title:'Edit'}
+                |
+                = icon_link_to reference,{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+                

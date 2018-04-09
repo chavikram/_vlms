@@ -1,0 +1,77 @@
+%div.col-md-12
+  %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;"}
+    %b
+      %center
+        ="MINISTRY OF CIVIL AVIATION"
+        %br
+        ="VIP REFERENCES MONITORING SYSTEM"
+
+      %u
+        =" Category Wise Listing of  References:"
+  %div.panel-body
+    %table.table.table-striped
+      %thead{:style=>"page-break-inside: avoid;"}
+
+      -if !@vip_categories.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+            %b= " Category"
+          %td
+            %b= "Total References"
+          %td
+            %b= "Pending References"
+        %tr
+          %td{:colspan=>'3'}
+            %b
+              %u="VIP Categories"
+            
+        - @vip_categories.try :each_with_index do |vip_category,index|
+          - if vip_category.isVip?
+            - if vip_category.vip_references.count==0
+              %tr{:style=>'color:black;'}
+                %td
+                  ="#{vip_category.name}" 
+                %td= vip_category.vip_references.count
+                %td{:style=>'color:red;'}= link_to "#{vip_category.vip_references.pending.count}", referencelist_vip_category_path(vip_category)
+            - else
+              %tr
+                %td
+                  -if vip_category.isVip?
+                    ="#{vip_category.name}" 
+                  -else
+                    ="#{vip_category.name}(Non-VIP)"
+                
+                %td= vip_category.vip_references.count
+                %td= link_to "#{vip_category.vip_references.pending.count}", referencelist_vip_category_path(vip_category)
+        %tr
+          %td{:colspan=>'3'}
+            %b
+              %u="Non-VIP Categories"
+            
+        - @vip_categories.try :each_with_index do |vip_category,index|
+          - if !vip_category.isVip?
+            - if vip_category.vip_references.count==0
+              %tr{:style=>'color:black;'}
+                %td
+                  ="#{vip_category.name}" 
+                %td= vip_category.vip_references.count
+                %td{:style=>'color:red;'}= link_to "#{vip_category.vip_references.pending.count}", referencelist_vip_category_path(vip_category)
+            - else
+              %tr
+                %td
+                  -if vip_category.isVip?
+                    ="#{vip_category.name}" 
+                  -else
+                    ="#{vip_category.name}(Non-VIP)"
+                
+                %td= vip_category.vip_references.count
+                %td= link_to "#{vip_category.vip_references.pending.count}", referencelist_vip_category_path(vip_category)
+
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td{:colspan=>"1"}
+            %b= "Total"
+          %td
+            %b= "#{VipReference.all.count}"
+
+          %td
+            %b= "#{VipReference.all.pending.count}"

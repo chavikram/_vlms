@@ -1,0 +1,36 @@
+%nav.navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
+  .navbar-header
+    %button.navbar-toggle{type: 'button', data: {toggle: 'collapse', target: '.navbar-collapse'}}
+      %span.sr-only
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %br
+      = link_to vip_ref_app_home_path,{:style=>"color: #23648d; font-weight: bolder"} do 
+        &nbsp;&nbsp;&nbsp;
+        %i{:class=>'glyphicon glyphicon-home',:style=>'font-size:20px;'}
+        &nbsp;PMO/VIP References Monitoring System
+        %sup
+          BETA
+  .collapse.navbar-collapse
+    %ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        %li= link_to "Welcome, #{current_user.contact.name},#{current_user.contact.designation.name},#{current_user.contact.office.name} Office",'#',{ :style=>"color: #23648d; font-weight: bolder"}
+        %li
+          = link_to  edit_user_registration_path do
+            %i{:class=>'fa fa-user'}
+            Edit User
+        %li
+          = link_to destroy_user_session_path, rel: :nofollow, method: :delete do
+            %i{:class=>'glyphicon glyphicon-log-out'}
+            LogOut 
+      - unless user_signed_in?
+        %li
+          = link_to new_user_registration_path do
+            %i{:class=>"glyphicon glyphicon-user"}
+            Signup 
+        %li
+          = link_to new_user_session_path do 
+            %i{:class=>"glyphicon glyphicon-log-in"}
+            Login  
+    = render 'layouts/javascripts'

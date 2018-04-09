@@ -1,0 +1,22 @@
+%td= index+1
+%td= reference.id
+%td=reference.subject  
+%td="#{reference.letter_no}   (#{l reference.letter_date})"
+%td
+  =reference.sender.try(:name)
+  %br
+    =reference.sender.try(:designation)
+%td=reference.section.name
+%td=l reference.diaried_date
+/
+  -if reference.vip_ref_movements.count!=0
+    %td=User.find(reference.vip_ref_movements.first.sent_to).contact.office.name
+  - else
+    %td="***"
+%td=reference.vip_ref_status.status_name
+%td{:colspan=>"2"}
+  =reference.vip_ref_summaries.try(:first).try(:summary_text)
+  - if reference.vip_ref_summaries.size>0
+    %br
+    ="(Updated On:"
+    ="#{l reference.vip_ref_summaries.try(:first).try(:updated_at)})"

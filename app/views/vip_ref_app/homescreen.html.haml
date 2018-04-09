@@ -1,0 +1,67 @@
+  
+%div.col-md-6
+  %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;font-family:verdana;"}
+    %b
+      =" Section-wise disposal summary:"
+    %u
+      =link_to "Download PDF", vip_ref_app_disposalreport_path(:format => 'pdf',:download=>'true')
+  %div.panel-body
+    %table.table.table-bordered
+      -if !@sectionsbydisposal.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+            %b="S.No."
+          %td
+            %b= "Section"
+          %td
+            %b= "Total"
+          %td
+            %b= "Closed"
+          %td
+            %b= "Pending"
+          %td
+            %b= "Disposal Rate"
+          %td{:colspan=>'2'}
+            %b
+              = "No. of pending references not updated since.."
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+          %td
+          %td
+          %td
+          %td
+          %td
+          %td
+            ="  Last Two weeks" 
+          %td
+            ="  Last One month" 
+            
+            
+        - @sectionsbydisposal.try :each_with_index do |section,index|
+          %tr  
+            %td= index+1       
+            %td= section.name
+            %td= "#{section.vip_references.vip.count}"
+            %td= "#{section.vip_references.vip.closed.count}"          
+            %td= "#{section.vip_references.vip.pending.count}"
+            %td= "#{(section.vip_references.vip.closed.count*100/section.vip_references.vip.count.to_f).round()}%"
+            %td
+              - count=0
+              - count1=0
+              - count2=0
+              - section.vip_references.vip.pending.each do |reference| 
+                -if reference.vip_ref_summaries.size> 0
+                  -if reference.vip_ref_summaries.first.updated_at<= 2.week.ago
+                    -count =count+1
+                  -if reference.vip_ref_summaries.first.updated_at<= 1.month.ago
+                    -count1 =count1+1
+                -if reference.vip_ref_summaries.size == 0
+                  - count2=count2+1  
+              =count
+            %td
+              =count1
+              
+                
+
+
+

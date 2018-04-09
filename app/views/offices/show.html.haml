@@ -1,0 +1,22 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show Office Details"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Office Name"
+        %td=@office.name
+      %tr
+        %td= "Room No"
+        %td= @office.room_no
+      %tr
+        %td= "Floor"
+        %td= @office.floor
+      %tr
+        %td= "Incharge Name"
+        %td= @office.incharge_name
+
+= link_to 'Edit', edit_office_path(@office)
+|
+= link_to 'Back', offices_path

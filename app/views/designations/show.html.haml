@@ -1,0 +1,24 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show Designation"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Designation Name"
+        %td=@designation.name
+      %tr
+        %td= "Default"
+        %td= @designation.default
+      %tr
+        %td= "Created At"
+        %td= @designation.created_at.to_formatted_s(:long)
+      %tr
+        %td= "Updated At"
+        %td= @designation.updated_at.to_formatted_s(:long)
+
+
+= link_to 'Edit', edit_designation_path(@designation)
+\|
+= link_to 'Back', designations_path
+

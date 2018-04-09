@@ -1,0 +1,26 @@
+p = Axlsx::Package.new
+wb = xlsx_package.workbook
+wb.styles do |s|
+	wrap_text = s.add_style :fg_color=> "000000",
+					:b => false,
+					:bg_color => "FFFFFF",
+					:sz => 12,
+					:border => { :style => :thin, :color => "00" },
+					:alignment => { :horizontal => :center,
+					:vertical => :center ,
+					:wrap_text => true}
+	
+	wb.add_worksheet(name: "Buttons") do |sheet|
+ 	sheet.add_row ['VIP References Status Report']
+ 	sheet.merge_cells("A1:J1")
+	
+    sheet.add_row ['S.No.','Subject','Letter No','Letter Date', 'Sender Details', 'Dealing Section', 'Receipt Diary Date', 'Currenly With','Status', 'Remarks'] 
+    @vip_references_for_pdf.each_with_index do |ref,index|
+    	sheet.add_row [index+1,ref.subject,"#{ref.letter_no}","#{l ref.letter_date}",ref.sender.try(:name),ref.section.name,"#{l(ref.diaried_date)}",
+    	"#{ref.vip_ref_movements.count!=0?User.find(ref.vip_ref_movements.first.sent_to).contact.office.name: ''}",
+		ref.vip_ref_status.status_name,
+		"#{ref.vip_ref_summaries.try(:first).try(:summary_text)}"	    	
+    	 ]	
+    end 
+    end
+end

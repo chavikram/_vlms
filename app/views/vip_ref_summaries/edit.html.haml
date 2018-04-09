@@ -1,0 +1,36 @@
+%div.panel.panel-info
+  %div.panel-heading="Receipt Details"
+  %div.panel-body
+    %div.row
+      %div.col-md-12
+        %label.col-md-2= "Letter No"
+        %div.col-md-4=@vip_reference.letter_no
+        %label.col-md-2="Letter Date"
+        %div.col-md-4=@vip_reference.letter_date.to_formatted_s(:long)         # => "18 Jan 06:10"
+    %div.row
+      %div.col-md-12
+        %label.col-md-2= "Subject"
+        %div.col-md-10=@vip_reference.subject
+    %div.row
+      %div.col-md-12
+        %label.col-md-2= "Vip Name"
+        %div.col-md-10=@vip_reference.sender.name
+
+= form_for([@vip_reference,@vip_ref_summary]) do |f|
+  %div.panel.panel-info
+    %div.panel-heading="Status Summary Details"
+    %div.panel-body
+      %div.row.top-buffer
+        %div.col-md-12
+          %label.col-md-2= "Status Summary Update:"
+          %div.col-md-10=f.text_area :summary_text,:cols=>'90',:rows=>'5',:class=>'form-control'
+
+  %div.panel.panel-info
+    %div.panel-body
+      %div.row.top-buffer
+        %div.col-md-10
+        %div.col-md-2
+          = f.submit 'Update', :class=> 'btn btn-primary'
+
+=link_to 'Back', @vip_reference
+

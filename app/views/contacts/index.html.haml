@@ -1,0 +1,48 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="Listing Contacts"
+  %div.panel-body
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th Contact Name
+          %th Designation
+          %th Room No
+          %th Contact No
+          %th InterCom
+          %th Office
+          %th User Email
+          %th Active?
+      %tbody      
+        %tr
+          = will_paginate @contacts, renderer: BootstrapPagination::Rails
+
+      - @contacts.each_with_index do |contact,index|
+        %tr
+          -if params[:page].to_i == 0
+            %td= index+1
+          -else
+            %td= (params[:page].to_i-1)*Rails.application.config.records_per_page+index+1
+          %td=link_to "#{contact.name}", office_contact_path(@office,contact)
+          %td= contact.designation.try :name
+          %td= contact.room_no
+          %td= contact.contact_no
+          %td= contact.intercom
+          -if !contact.office.nil?
+            %td= link_to "#{contact.office.name}", office_path(contact.office)
+          -else 
+            %td= contact.try(:office).try(:name)  
+          %td= contact.try(:user).try(:email)
+          %td= check_box_tag :active ,contact.active,contact.active, {:class=>'checkbox',:readonly=>false,:disabled=>'true'}
+          %td
+            /= icon_link_to office_contact_path(contact.office,contact),{:icon => "glyphicon glyphicon-open-file"},{:title=>'Show'}
+            = icon_link_to  edit_office_contact_path(contact.office,contact),{:icon => "glyphicon glyphicon-edit"},{:title=>'Edit'}
+            |
+            = icon_link_to office_contact_path(contact.office,contact),{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+%br
+= link_to 'New Contact', new_office_contact_path(@office)
+|
+= link_to 'Back', :back
+
+

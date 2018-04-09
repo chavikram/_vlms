@@ -1,0 +1,25 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show VIP Category"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Name"
+        %td=@vip_category.name
+      %tr
+        %td= "Short Name"
+        %td= @vip_category.s_name
+      %tr
+        %td= "Is Default?"
+        %td= @vip_category.default
+      %tr
+        %td= "Created At"
+        %td= @vip_category.created_at.to_formatted_s(:long)
+      %tr
+        %td= "Updated At"
+        %td= @vip_category.updated_at.to_formatted_s(:long)
+        
+= link_to 'Edit', edit_vip_category_path(@vip_category)
+\|
+= link_to 'Back', vip_categories_path

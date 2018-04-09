@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  room_no: MyString
+  floor: MyString
+  contact_no: MyString
+  intercom: MyString
+
+two:
+  name: MyString
+  room_no: MyString
+  floor: MyString
+  contact_no: MyString
+  intercom: MyString

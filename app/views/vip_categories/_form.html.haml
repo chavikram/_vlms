@@ -1,0 +1,29 @@
+= form_for @vip_category do |f|
+  - if @vip_category.errors.any?
+    #error_explanation
+      %h4= "#{pluralize(@vip_category.errors.count, "error")} prohibited this vip category from being saved:"
+      /
+        %ul
+          - @vip_category.errors.full_messages.each do |msg|
+            %li= msg
+  %div.row.top-buffer
+    %div.col-md-4= f.label :name
+    %div.col-md-8= f.text_field :name, {:class=>'form-control'}
+  %div.row.top-buffer
+    %div.col-md-4= f.label :s_name
+    %div.col-md-8= f.text_field :s_name, {:class=>'form-control'}
+  %div.row.top-buffer
+    %div.col-md-4=f.label :category
+    %div.col-md-4= f.collection_select(:category_id, Category.all, :id,:name,{}, {:class=>'form-control'})
+
+  %div.row.top-buffer
+    %div.col-md-4= f.label :default
+    %div.col-md-8= f.check_box :default , {:class=>'form-control'}
+
+  %div.row.top-buffer
+    %div.col-md-9
+    %div.col-md-3
+      -if @vip_category.new_record?
+        = f.submit 'Create', :class=> 'btn btn-primary'
+      -else
+        = f.submit 'Update', :class=> 'btn btn-primary'

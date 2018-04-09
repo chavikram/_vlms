@@ -1,0 +1,41 @@
+-content_for :inbox_count do 
+  -if !@vip_references.nil?
+    ="[#{@vip_references.count}]"
+
+%div.panel.panel-info
+  %div.panel-heading="Inbox References"
+  %div.panel-body
+    %table.table.table-striped
+      -if !@vip_references.nil?
+        %tr{:style=>'background-color: #F8F8F8; border:1px solid black;'}
+          %td
+            %b= "S.No."
+          %td
+            %b= "Letter No."
+          %td
+            %b= "Letter Date"
+          %td
+            %b= "Subject"
+          %td
+            %b= "Dealing Section"
+          %td
+            %b= "VIP"
+          %td
+            %b= "Status"
+          %td
+            %b= "Sent On"
+          %td
+            %b= "Quick Action"
+    
+      - @vip_references.try :each_with_index do |reference,index|
+        -if index%2==1
+          %tr.even
+            = render 'inbox',:reference => reference, :index=> index
+        -else
+          %tr.odd
+            = render 'inbox',:reference => reference, :index=> index
+    
+      %tr
+        %td{:colspan=>'12'}= will_paginate @vip_references
+        /%td= link_to 'Edit', edit_vip_reference_path(reference)
+        /%td= link_to 'Destroy', reference, :method => :delete, :data => { :confirm => 'Are you sure?' }

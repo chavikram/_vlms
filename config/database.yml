@@ -1,0 +1,47 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  database: vrmsdb
+  host: 10.249.177.136
+  #host: localhost
+  username: vrmsdb
+  password: vrmsdb##123
+  #password: 'rssd##123'
+  
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  database: vlms_test
+  #host: 10.25.123.36
+  host: localhost
+  username: pqsoft
+  password: pqsoft
+  #password: 'rssd##123'
+  
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  database: vrmsdb
+  host: 10.249.177.136
+  #host: localhost
+  username: vrmsdb
+  password: vrmsdb##123
+  
+  #password: 'rssd##123'

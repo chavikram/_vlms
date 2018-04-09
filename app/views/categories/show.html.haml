@@ -1,0 +1,28 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show Category"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Name"
+        %td=@category.name
+      %tr
+        %td= "Deleted"
+        %td= @category.deleted
+      %tr
+        %td= "Is Default?"
+        %td= @category.default
+
+      %tr
+        %td= "Created At"
+        %td= @category.created_at.to_formatted_s(:long)
+      %tr
+        %td= "Updated At"
+        %td= @category.updated_at.to_formatted_s(:long)
+
+
+= link_to 'Edit', edit_category_path(@category)
+\|
+= link_to 'Back', categories_path
+

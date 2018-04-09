@@ -1,0 +1,161 @@
+%div{:align=>'right'}= link_to 'Back', :back, :class=> 'btn btn-default btn-xs'
+%div.top-buffer
+%div.panel.panel-info
+  %div.panel-body
+    %div.row
+      %div.col-md-7
+      %div.col-md-5
+        
+        /
+          -if @vip_reference.isOwner?(current_user.id)
+            = link_to 'Send', new_vip_reference_vip_ref_movement_path(@vip_reference), :class => 'btn btn-default btn-xs'
+        /-if @vip_reference.isOwner?(current_user.id) || current_user.is_admin?  
+        - if @vip_reference.current_status != "New"
+          = link_to 'Update Status', new_vip_reference_vip_ref_summary_path(@vip_reference), :class => 'btn btn-default btn-xs'
+          = link_to 'Transfer', new_vip_reference_vip_ref_transfer_path(@vip_reference),:class => 'btn btn-default  btn-xs'
+        = link_to 'Modify Reference Details', edit_vip_reference_path(@vip_reference), :class => 'btn btn-default  btn-xs'
+        = link_to 'Home Page', home_complaints_path, :class => 'btn btn-default  btn-xs'
+
+    %div.panel.panel-info
+      %div.panel-heading="VIP Reference Details"
+      %div.panel-body
+        %div.row
+          %label.col-md-2= "Letter No:"
+          %div.col-md-4= @vip_reference.letter_no
+          %label.col-md-2= "Letter Date:"
+          %div.col-md-4= @vip_reference.letter_date.to_formatted_s(:long)
+        %div.row
+          %label.col-md-2="Subject:"
+          %div.col-md-4= @vip_reference.subject
+          %label.col-md-2="Diary Date:"
+          %div.col-md-4= @vip_reference.diaried_date
+        %div.row
+          %label.col-md-2="Received On:"
+          %div.col-md-4= @vip_reference.received_on
+          %label.col-md-2="eOffice Receipt No:"
+          %div.col-md-4= @vip_reference.eoffice_receipt_no
+        %div.row
+          %label.col-md-2="eOffice File No:"
+          %div.col-md-4= @vip_reference.eoffice_file_no
+          %label.col-md-2="Dealing Section:"
+          %div.col-md-4= @vip_reference.dealing_section.name
+                
+        %div.row
+          %label.col-md-2="Status:"
+          %div.col-md-4= @vip_reference.vip_ref_status.status_name
+          %label.col-md-2="VIP Category:"
+          %div.col-md-4= @vip_reference.vip_category.name
+    
+    %div.panel.panel-info
+      %div.panel-heading="Sender Details"
+      %div.panel-body
+        %div.row
+          %label.col-md-2="Name:"
+          %div.col-md-4= @vip_reference.sender.name
+          %label.col-md-2="Designation:"
+          %div.col-md-4= @vip_reference.sender.designation
+        %div.row
+          %label.col-md-2="Organization:"
+          %div.col-md-10= @vip_reference.sender.org
+        %div.row
+          %label.col-md-2="Address:"
+          %div.col-md-10= @vip_reference.sender.address1
+        %div.row
+          %div.col-md-2= ""
+          %div.col-md-10= @vip_reference.sender.address1
+          %div.col-md-2= ""
+          %div.col-md-10= @vip_reference.sender.address2
+          %div.col-md-2= ""
+          %div.col-md-10= Country.find(@vip_reference.sender.try(:country).try(:strip)).name
+          %div.col-md-2= ""
+          %div.col-md-10= State.find(@vip_reference.sender.try(:state).try(:strip)).name
+
+    %div.panel.panel-info
+      %div.panel-heading="Last Status Summary Details"
+      %div.panel-body
+        -if !@vip_reference.vip_ref_summaries.empty?
+          %table.table
+            %tr
+              %th="S.No."
+              %th="Status Text"
+              %th="Updated By"
+              %th="Updated On"
+            - @vip_reference.vip_ref_summaries.each_with_index do |obj,index|
+              -if index==3
+                - break
+              %tr
+                %td= "#{index+1}." 
+                %td= obj.summary_text
+                %td
+                  = User.find(obj.creator).contact.name
+                  %br
+                  = User.find(obj.creator).contact.office.name
+                %td= l obj.updated_at
+            - if @vip_reference.vip_ref_summaries.size > 3
+              %tr
+                %td{:colspan=>'4'}= link_to "Click Here for All", vip_reference_vip_ref_summaries_path(@vip_reference)
+    /
+      %div.panel.panel-info
+        %div.panel-heading="Movement Details"
+        %div.panel-body
+          %div.row
+            %div.col-md-2
+              %b
+                %u= "S.No."
+            %div.col-md-2
+              %b
+                %u= "Sent By"
+      
+            %div.col-md-2
+              %b
+                %u= "Sent To"
+            %div.col-md-2
+              %b
+                %u= "Sent On"
+            %div.col-md-4
+              %b
+                %u="Remarks"        
+      
+          - @vip_reference.vip_ref_movements.each_with_index do |obj,index|
+            %div.row
+              %div.col-md-2= index+1
+              %div.col-md-2= User.find(obj.sent_by).contact.office.name
+              %div.col-md-2= User.find(obj.sent_to).try(:contact).try(:office).try(:name)
+              %div.col-md-2= obj.sent_on.to_formatted_s(:short)
+              %div.col-md-4=obj.remarks
+
+    %div.panel.panel-info
+      %div.panel-heading="Transfer Details"
+      %div.panel-body
+        %div.row
+          %div.col-md-1
+            %b
+              %u= "S.No."
+          %div.col-md-1
+            %b
+              %u= "Transferee Section"
+    
+          %div.col-md-2
+            %b
+              %u= "Transferred Section"
+          %div.col-md-2
+            %b
+              %u= "Transferred On"
+          %div.col-md-4
+            %b
+              %u="Remarks"    
+          %div.col-md-2
+            %b
+              %u="Tranferred By"    
+
+        - @vip_reference.vip_ref_transfers.each_with_index do |obj,index|
+          - if index == @vip_reference.vip_ref_transfers.size-1
+          
+          - else
+            %div.row
+              %div.col-md-1= index+1
+              %div.col-md-1= Section.find(obj.from_id).name
+              %div.col-md-2= Section.find(obj.to_id).name
+              %div.col-md-2= l obj.transferred_on
+              %div.col-md-4= obj.remarks
+              %div.col-md-2= User.find(obj.user_id).try(:contact).try(:office).try(:name)

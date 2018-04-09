@@ -1,0 +1,56 @@
+%div.col-md-8
+  %div.panel.panel-info
+    %div.panel-heading
+      ="SignUp"
+    %div.panel-body
+      = nested_form_for([resource,resource.with_contact], as: resource_name, url: registration_path(resource_name)) do |f| 
+        = devise_error_messages! 
+        %div.row.top-buffer
+          %div.col-md-4= f.label :email 
+          %div.col-md-8= f.email_field :email, autofocus: true, :class=>'form-control'
+        %div.row.top-buffer
+          %div.col-md-4=f.label :password
+          - if @validatable 
+            %i
+              = "(#{@minimum_password_length}  characters minimum)"
+          %div.col-md-8= f.password_field :password, autocomplete: "off", :class=>'form-control'
+        %div.row.top-buffer
+          %div.col-md-4=f.label :password_confirmation
+          %div.col-md-8=f.password_field :password_confirmation, autocomplete: "off", :class=>'form-control'
+  
+        -if resource.contact.id.nil?
+          = f.fields_for :contact do |contact_form|
+            %div.row.top-buffer
+              %div.col-md-4= contact_form.label :name
+              %div.col-md-8= contact_form.text_field :name, :class=>'form-control'
+            %div.row.top-buffer
+              %div.col-md-4=f.label :designation
+              %div.col-md-4=contact_form.collection_select(:designation_id, Designation.all, :id,:name,{}, {:class=>'form-control'})
+            %div.row.top-buffer
+              %div.col-md-4= contact_form.label :room_no
+              %div.col-md-8= contact_form.text_field :room_no, :class=>'form-control'
+            %div.row.top-buffer 
+              %div.col-md-4= contact_form.label :office_id
+              %div.col-md-8= contact_form.collection_select(:office_id, Office.all, :id, :name,{}, {:class=>'form-control'})
+            %div.row.top-buffer 
+              %div.col-md-4= contact_form.label :contact_no
+              %div.col-md-8= contact_form.text_field :contact_no , :class=>'form-control'
+            %div.row.top-buffer 
+              %div.col-md-4= contact_form.label :intercom
+              %div.col-md-8= contact_form.text_field :intercom, :class=>'form-control'
+        -else 
+          =resource.contact.url
+        %div.top-buffer 
+          %div.col-md-12= f.submit "Sign up" , :class =>'btn btn-primary'
+%div.col-md-4
+  %div.panel
+    %div.panel-heading{:style=>"color: #23648d; font-weight: bolder;"}
+      ="Instruction"
+    %div.panel-body
+      ="Password Policy: A valid password must contain at least one capital,one numeric and a special character with minimum password length of 8 characters."
+      %br
+      %br
+      ="Your Sign Up request will be sent to the selected office's incharge, you can get it activated by him."
+      %br
+      %br
+      

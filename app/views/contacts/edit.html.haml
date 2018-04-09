@@ -1,0 +1,9 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="Editing  Contact"
+  %div.panel-body
+    %div.col-md-8
+      = render 'form'
+    %div.col-md-4
+= link_to 'Show', office_contact_path(@contact.office,@contact)
+= link_to 'Back', office_contacts_path(@contact.office)

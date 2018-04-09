@@ -1,0 +1,61 @@
+%div{:style=>"font-family:verdana;"}
+  %u
+    List of available Reports
+  %table.table
+    -if current_user.is_admin?
+      %tr 
+        %td=link_to "Pending Report for all sections", vip_ref_app_pending_report_path
+        %td   
+          =link_to vip_ref_app_pending_report_path(:format => 'pdf',:download=>'true') do
+            ="  Download PDF"
+            %i{:class=>"glyphicon glyphicon-download-alt"}
+    -if current_user.is_admin?
+
+      %tr
+        %td
+          =link_to "Pendency Report for C&W", vip_ref_app_pending_report_1_path
+        %td
+          =link_to vip_ref_app_pending_report_1_path(:format => 'pdf',:download=>'true') do
+            ="  Download PDF"
+            %i{:class=>"glyphicon glyphicon-download-alt"}
+    %tr
+      %td
+        =link_to "Section wise disposal summary report", vip_ref_app_disposalreport_path
+      %td
+        =link_to vip_ref_app_disposalreport_path(:format => 'pdf',:download=>'true') do
+          ="  Download PDF"
+          %i{:class=>"glyphicon glyphicon-download-alt"}
+    -if current_user.is_admin?
+  
+      %tr
+        %td
+          =link_to "Pending report month wise- for all sections", vip_ref_app_monthwisereport_path(:type=>'all')
+        %td
+          =link_to vip_ref_app_monthwisereport_path(:format => 'pdf',:download=>'true',:type=>'all') do
+            ="  Download PDF"
+            %i{:class=>"glyphicon glyphicon-download-alt"}
+
+    %tr
+      %td
+        =link_to "Pending report month wise- for sections under office of #{current_user.contact.office.name}", vip_ref_app_monthwisereport_path
+      %td
+        =link_to  vip_ref_app_monthwisereport_path(:format => 'pdf',:download=>'true') do
+          ="  Download PDF"
+          %i{:class=>"glyphicon glyphicon-download-alt"}
+    -if current_user.is_admin?
+      %tr
+        %td
+          =link_to "Category Wise Pendency Report", vip_ref_app_category_wise_pendency_path
+        %td
+          =link_to vip_ref_app_category_wise_pendency_path(:format=>'pdf') do
+            ="Download PDF"
+            %i{:class=>"glyphicon glyphicon-download-alt"}
+    -if current_user.is_admin?
+
+      %tr
+        %td
+          =link_to "State Wise Pendency Report", vip_ref_app_statewisereport_path
+        %td
+          =link_to vip_ref_app_statewisereport_path(:format=>'pdf') do
+            ="Download PDF"
+            %i{:class=>"glyphicon glyphicon-download-alt"}

@@ -1,0 +1,33 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="Transfer Reference"
+  %div.panel-body
+    = form_for [@vip_reference,@vip_ref_transfer] , :method=>'post' do |f|
+      %div.row
+        %div.col-md-8
+          %div.row.top-buffer
+            %label.col-md-4="Ref No:"
+            %div.col-md-8
+              %u=link_to "#{@vip_reference.id}", vip_reference_path(@vip_reference)
+          %div.row.top-buffer
+            %label.col-md-4="Subject:"
+            %div.col-md-8= @vip_reference.subject
+          %div.row
+            %label.col-md-4="Transfer From:"
+            %div.col-md-8= @vip_reference.dealing_section.name 
+          
+          %div.row
+            %label.col-md-4="Transfer To:"
+            %div.col-md-8=f.select "to_id", options_from_collection_for_select(Section.all.select{|s| s.id!=@vip_reference.dealing_section.id}, "id", "name","#{params[:section_id]}"),{},{:class=>'form-control'}
+          
+          %div.row.top-buffer
+            %label.col-md-4="Transfer Remarks:"
+            %div.col-md-8=f.text_area "remarks", :size => "10x10" ,:class=>'form-control'
+
+      %div.row.top-buffer
+        %div.col-md-8
+        %div.col-md-4
+          = link_to 'Back', :back, :class=> 'btn btn-primary'
+          = f.submit 'Transfer', :class=> 'btn btn-primary'
+
+

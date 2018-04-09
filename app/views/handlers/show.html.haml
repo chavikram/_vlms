@@ -1,0 +1,26 @@
+%h1.header Handler Details
+%p#notice= notice
+
+%p
+  %b Name:
+  = @handler.name
+%p
+  %b Room no:
+  = @handler.room_no
+%p
+  %b Floor:
+  = @handler.floor
+%p
+  %b Contact no:
+  = @handler.contact_no
+%p
+  %b Intercom:
+  = @handler.intercom
+
+%p
+  %b User:
+  = @handler.user.email
+
+= link_to 'Edit', edit_handler_path(@handler)
+\|
+= link_to 'Back', handlers_path

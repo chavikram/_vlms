@@ -1,0 +1,20 @@
+<h1 class="header">Office Details</h1>
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Name:</strong>
+  <%= @office.name %>
+</p>
+<p>
+  <strong>Room no:</strong>
+  <%= @office.room_no %>
+</p>
+<p>
+  <strong>Floor:</strong>
+  <%= @office.floor %>
+</p>
+<p>
+  <strong>Incharge name:</strong>
+  <%= @office.incharge_name %>
+</p>
+<%= link_to 'Edit', edit_office_path(@office) %> |
+<%= link_to 'Back', offices_path %>

@@ -1,0 +1,20 @@
+= form_for @category do |f|
+  - if @category.errors.any?
+    #error_explanation
+      %h4= "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
+      /
+        %ul
+          - @category.errors.full_messages.each do |msg|
+            %li= msg
+  %div.row.top-buffer
+    %div.col-md-4= f.label :name
+    %div.col-md-8= f.text_field :name, {:class=>'form-control'}
+
+  %div.row.top-buffer
+    %div.col-md-4= f.label :default
+    %div.col-md-8= f.check_box :default , {:class=>'form-control'}
+    
+  %div.row.top-buffer
+    %div.col-md-9
+    %div.col-md-3
+      = f.submit :class=> 'btn btn-primary'

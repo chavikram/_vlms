@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  feedback_text: MyString
+  user_id_id: 
+  submitted_on: 2015-11-24 14:08:10
+
+two:
+  feedback_text: MyString
+  user_id_id: 
+  submitted_on: 2015-11-24 14:08:10

@@ -1,0 +1,36 @@
+= form_for(@office) do |f|
+  - if @office.errors.any?
+    #error_explanation
+      %h4
+        = pluralize(@office.errors.count, "error")
+        prohibited this office from being saved:
+      /
+        %ul
+          - @office.errors.full_messages.each do |message|
+            %li= message
+  %div.row.top-buffer
+    %div.col-md-4= f.label :name
+    %div.col-md-8= f.text_field :name, :class=>'form-control'
+  %div.row.top-buffer
+    %div.col-md-4= f.label :room_no
+    %div.col-md-8= f.text_field :room_no, :class=>'form-control'
+  %div.row.top-buffer
+    %div.col-md-4= f.label :floor
+    %div.col-md-8= f.text_field :floor, :class=>'form-control'
+  %div.row.top-buffer
+    %div.col-md-4= f.label :incharge_name
+    %div.col-md-8= f.text_field :incharge_name, :class=>'form-control'
+  %div.row.top-buffer
+    %div.col-md-4= f.label :incharge_id
+    %div.col-md-8= f.collection_select(:incharge_id, Contact.all, :id,:name,{}, {:class=>'form-control'})  
+    
+  %div.row.top-buffer
+    %div.col-md-4= f.label :designation
+    %div.col-md-8= f.text_field :designation, :class=>'form-control'
+  %div.row.top-buffer
+    %div.col-md-4= f.label :parent_office
+    %div.col-md-4= f.collection_select(:parent_office_id, Office.all, :id,:name,{}, {:class=>'form-control'})  
+
+  %div.row.top-buffer
+    %div.col-md-12
+      = f.submit :class=>'btn btn-default'

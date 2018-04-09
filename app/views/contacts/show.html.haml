@@ -1,0 +1,43 @@
+%p#notice= notice
+%div.panel.panel-info
+  %div.panel-heading
+    ="Show Contact"
+  %div.panel-body
+    %table.table
+      %tr
+        %td= "Name"
+        %td=@contact.name
+      %tr
+        %td= "Designation"
+        %td=@contact.designation.name
+      %tr
+        %td= "Email"
+        %td=@contact.try(:user).try(:email)
+      
+      %tr
+        %td= "Room No"
+        %td= @contact.room_no
+      %tr
+        %td= "Contact No"
+        %td= @contact.contact_no
+      %tr
+        %td= "Contact No"
+        %td= @contact.contact_no
+      
+      %tr
+        %td= "Intercom"
+        %td= @contact.intercom
+      %tr
+        %td= "Active"
+        %td= check_box_tag :active ,@contact.active,@contact.active, {:class=>'checkbox',:readonly=>false,:disabled=>'true'}
+
+      %tr
+        %td= "Created At"
+        %td= @contact.created_at.to_formatted_s(:long)
+      %tr
+        %td= "Updated At"
+        %td= @contact.updated_at.to_formatted_s(:long)
+        
+= link_to 'Edit', edit_office_contact_path(@contact.office,@contact)
+\|
+= link_to 'Back', :back

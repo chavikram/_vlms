@@ -1,0 +1,49 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="Listing sections"
+  %div.panel-body
+    %table.table
+      %thead
+        %tr
+          %th= "#"
+          %th= "Name"
+          %th= "Short Name"
+          %th= "Section Officer"
+          %th= "Under Secretary"
+          %th= "Director"
+          %th= "Joint Secretary"
+          %th= "Created At"
+          %th= "Updated At"
+          %th= "Quick Action"
+      %tbody      
+        %tr
+          = will_paginate @sections, renderer: BootstrapPagination::Rails
+
+        - @sections.each_with_index do |section,index|
+          %tr
+            -if params[:page].to_i == 0
+              %td= index+1
+            -else
+              %td= (params[:page].to_i-1)*20+index+1
+
+            %td=link_to "#{section.name}",section
+            %td= section.short_name
+            -begin 
+            
+              %td= link_to "#{section.sectionofficer.try(:contact).try(:name)}", office_contact_path(section.sectionofficer.contact.office,section.sectionofficer.try(:contact))
+              %td= link_to "#{section.undersecretary.try(:contact).try(:name)}", office_contact_path(section.undersecretary.contact.office,section.undersecretary.try(:contact))
+              %td= link_to "#{section.director.try(:contact).try(:name)}", office_contact_path(section.director.contact.office,section.director.try(:contact))            
+              %td= link_to "#{section.js.try(:contact).try(:name)}", office_contact_path(section.js.contact.office,section.js.try(:contact))
+              %td= l section.created_at
+              %td= l section.updated_at
+            -rescue Exception => e
+              %td= "Exception occured #{e}"
+            
+            %td
+              /= icon_link_to section,{:icon => "glyphicon glyphicon-open-file"},{title:'Show'}
+              = icon_link_to  edit_section_path(section),{:icon => "glyphicon glyphicon-edit"},{title:'Edit'}
+              \|
+              = icon_link_to section,{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+
+
+= link_to 'Add New Section', new_section_path

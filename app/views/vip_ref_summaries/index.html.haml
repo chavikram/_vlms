@@ -1,0 +1,54 @@
+%script
+  // this may cause nesting error this code is to be moved js file 
+  function printPage() {
+  $('#printable tr').find('th:last, td:last').hide();
+  $('#printable').print();
+  window.location.reload();
+  }
+
+
+%div.panel.panel-info
+  %div.panel-heading
+    ="VIP Reference's Summary History"
+  %div.panel-body
+    %div.row
+      %div.col-md-12.col-md-offset-11
+        =link_to 'Print', '#',:class=>'btn btn-default' ,:onclick=>"printPage()"
+    %table.table#printable
+      %thead
+        %tr
+          %th= "#"
+          %th= "Summary Text"
+          %th= "Created By"
+          %th= "Created At"
+          %th= "Updated At"
+          %th= "Quick Action"    
+      %tbody
+        %tr
+          = will_paginate @vip_ref_summaries, renderer: BootstrapPagination::Rails
+
+      - @vip_ref_summaries.each_with_index do |vip_ref_summary,index|
+        %tr
+          -if params[:page].to_i == 0
+            %td= index+1
+          -else
+            %td= (params[:page].to_i-1)*10+index+1
+
+          %td= vip_ref_summary.summary_text
+          %td= vip_ref_summary.creator.email
+          %td= l vip_ref_summary.created_at
+          %td= l vip_ref_summary.updated_at
+          %td
+            /
+              = link_to 'Show', vip_reference_vip_ref_summary_path(@vip_reference,vip_ref_summary)
+              = link_to 'Edit', edit_vip_reference_vip_ref_summary_path(@vip_reference,vip_ref_summary)
+              = link_to 'Destroy', vip_reference_vip_ref_summary_path(@vip_reference,vip_ref_summary), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+            = icon_link_to vip_reference_vip_ref_summary_path(@vip_reference,vip_ref_summary),{:icon => "glyphicon glyphicon-open-file"},{title:'Show'}
+            = icon_link_to  edit_vip_reference_vip_ref_summary_path(@vip_reference,vip_ref_summary),{:icon => "glyphicon glyphicon-edit"},{title:'Edit'}
+            = icon_link_to vip_reference_vip_ref_summary_path(@vip_reference,vip_ref_summary),{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+
+
+%br
+
+= link_to 'New VIP Reference summary', new_vip_reference_vip_ref_summary_path

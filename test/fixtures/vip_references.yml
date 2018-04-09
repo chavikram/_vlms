@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  letter_no: MyString
+  letter_date: 2015-08-26
+  subject: MyText
+  diaried_date: 2015-08-26
+  diaried_by: 1
+  sender_name: MyString
+  section_id: 
+  vip_ref_status_id: 
+  vip_category_id: 
+  received_on: 2015-08-26
+  eoffice_receipt_no: MyString
+  eoffice_file_no: MyString
+  deleted: false
+
+two:
+  letter_no: MyString
+  letter_date: 2015-08-26
+  subject: MyText
+  diaried_date: 2015-08-26
+  diaried_by: 1
+  sender_name: MyString
+  section_id: 
+  vip_ref_status_id: 
+  vip_category_id: 
+  received_on: 2015-08-26
+  eoffice_receipt_no: MyString
+  eoffice_file_no: MyString
+  deleted: false

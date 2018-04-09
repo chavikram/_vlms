@@ -1,0 +1,43 @@
+%div.panel.panel-info
+  %div.panel-heading
+    ="Listing States"
+  %div.panel-body
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th State Name
+          %th State Code
+          %th Country 
+          %th Created At
+          %th Updated At
+          %th Quick Action
+      %tbody      
+        %tr
+          = will_paginate @states, renderer: BootstrapPagination::Rails
+
+      - @states.each_with_index do |state,index|
+        %tr
+          -if params[:page].to_i == 0
+            %td= index+1
+          -else
+            %td= (params[:page].to_i-1)*5+index+1
+          %td= state.name
+          %td= state.code
+          %td= state.country.name
+          
+          %td= l state.created_at
+          %td= l state.updated_at
+          %td
+            = icon_link_to country_state_path(@country,state),{:icon => "glyphicon glyphicon-open-file"},{:title=>'Show'}
+            |
+            = icon_link_to  edit_country_state_path(@country,state),{:icon => "glyphicon glyphicon-edit"},{:title=>'Edit'}
+            |
+            = icon_link_to country_state_path(@country,state),{:icon => "glyphicon glyphicon-trash"},{:title=>'Delete',:method => :delete, :data => { :confirm => 'Are you sure?' }}
+
+%br
+= link_to 'New State', new_country_state_path
+
+
+
+
